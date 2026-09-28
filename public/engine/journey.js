@@ -11,14 +11,14 @@ export const ARMS = {
     label: "Control: documented setup flow",
     short: "Control",
     description:
-      "The lab's rendering of Fyxer's public setup checklist: connect, the 300 most recent emails are categorised (E1), drafts are written for To do / To respond emails and found in the inbox or Drafts (E2). Not Fyxer's actual UI.",
+      "The lab's rendering of Fyxer's documented flow: connect, the 300 most recent emails are categorised and labelled in the inbox (E1, E17), drafts are written for To do / To respond emails and sit in the thread or Drafts (E2), and Fyxer's generic welcome email arrives. Not Fyxer's actual UI.",
   },
   treatment: {
     id: "treatment",
-    label: "Treatment: transparent first-value preview",
+    label: "Treatment: specific start-here welcome email",
     short: "Treatment",
     description:
-      "Same system behaviour. After categorisation, an in-product preview shows what was sorted, the first draft with 'why this draft', where it lives in the inbox, and setup-readiness feedback. It changes what the user sees, not what the system does.",
+      "Same system behaviour. After categorisation, the welcome email already in the inbox names what was sorted, the To respond threads that already have drafts and why each needs a reply, links into each thread, and adds calendar and setup-readiness feedback. It changes what the user sees, not what the system does.",
   },
 };
 

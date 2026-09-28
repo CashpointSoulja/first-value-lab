@@ -1,5 +1,5 @@
 import { marked } from "/vendor/marked.esm.js";
-import { EVIDENCE, ASSUMPTIONS, SOURCES, DISCLAIMER } from "/engine/evidence.js";
+import { EVIDENCE, ASSUMPTIONS, SOURCES, UI_REFERENCES, DISCLAIMER } from "/engine/evidence.js";
 import { PERSONAS, CATEGORY_LABELS } from "/engine/personas.js";
 import { ARMS, READINESS_CHECKS, simulateJourney } from "/engine/journey.js";
 import { EVENTS, COMMON_PROPERTIES, EXPERIMENT_ID, validateEvent } from "/engine/taxonomy.js";
@@ -51,13 +51,21 @@ function route() {
 }
 
 /* ---------------- Overview ---------------- */
-function initOverview() {
+function initOverview(rest = []) {
   $("#evidence-list").innerHTML = EVIDENCE.map(
     (e) => `<li><a class="chip doc" href="${SOURCES[e.source]}" target="_blank" rel="noopener">${e.id}</a><div><p>${esc(e.claim)}</p><a href="${SOURCES[e.source]}" target="_blank" rel="noopener">${esc(new URL(SOURCES[e.source]).hostname + new URL(SOURCES[e.source]).pathname)}</a></div></li>`,
+  ).join("");
+  $("#ref-list").innerHTML = UI_REFERENCES.map(
+    (r) => `<li><span class="chip doc">${r.id}</span><div><p><b>${esc(r.kind)}</b> · ${esc(r.where)}</p><p>${esc(r.shows)}</p><a class="where" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.url)}</a></div></li>`,
   ).join("");
   $("#assumption-list").innerHTML = ASSUMPTIONS.map(
     (a) => `<li><span class="chip amb">${a.id}</span><div><p>${esc(a.text)}</p><p class="test">How to check: ${esc(a.test)}</p></div></li>`,
   ).join("");
+  routeOverview(rest);
+}
+
+function routeOverview([section]) {
+  if (section) requestAnimationFrame(() => document.getElementById(section)?.scrollIntoView());
 }
 
 /* ---------------- Before / after ---------------- */
@@ -114,6 +122,7 @@ function showScene(i, updateHash = true) {
   const stage = $("#stage");
   stage.dataset.scene = String(story.i);
   const shown = revealedAt(story.i);
+  stage.dataset.diverged = String(shown.size > 0);
   const focus = new Set(s.focus);
   $$(".st-el", stage).forEach((el) => {
     const k = el.dataset.el;
@@ -576,7 +585,7 @@ async function initValidate() {
 }
 
 const INIT = { overview: initOverview, story: initStory, simulator: initSimulator, events: initEvents, experiment: initExperiment, validate: initValidate, docs: initDocs };
-const ROUTE = { story: routeStory, simulator: (rest) => rest.length && (simFromHash(rest), setSim({}, false)), docs: routeDocs };
+const ROUTE = { overview: routeOverview, story: routeStory, simulator: (rest) => rest.length && (simFromHash(rest), setSim({}, false)), docs: routeDocs };
 
 window.addEventListener("hashchange", route);
 route();

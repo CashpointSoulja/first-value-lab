@@ -21,9 +21,32 @@ describe("before/after storyboard", () => {
     }
   });
 
-  it("covers the problem, the unchanged system, preview, readiness, empty state and decision, in that order", () => {
-    expect(STORYBOARD.map((s) => s.id)).toEqual(["problem", "system", "preview", "rationale", "readiness", "empty", "decision"]);
+  it("follows the user's job in the inbox: job, unchanged system, gap, start-here, trust, calendar, readiness, empty, decision", () => {
+    expect(STORYBOARD.map((s) => s.id)).toEqual(["job", "system", "gap", "start", "trust", "schedule", "readiness", "empty", "decision"]);
     expect(STORYBOARD[1].after.toLowerCase()).toContain("identical");
+    for (const s of STORYBOARD.slice(0, 3)) expect(s.reveal, s.id).toEqual([]);
+  });
+
+  it("keeps sending human and invents no automation", () => {
+    const all = STORYBOARD.map((s) => `${s.before} ${s.after} ${s.why}`).join(" ");
+    expect(all).toMatch(/presses Send/);
+    expect(all).toMatch(/nothing sends without review/i);
+    expect(all).not.toMatch(/\b(auto-?sends?|sends automatically|books automatically|automatically (sends|replies|books))\b/i);
+    const stage = html.slice(html.indexOf('id="stage"'), html.indexOf('id="story-text"'));
+    expect(stage).toContain('class="gt-send">Send<');
+    expect(stage).toContain("Nothing sends until you press it");
+    expect(stage).toContain("Only your availability is checked, not other attendees'");
+  });
+
+  it("shows control and treatment in the same Gmail inbox, with the thread and draft shared by both arms", () => {
+    const stage = html.slice(html.indexOf('id="stage"'), html.indexOf('id="story-text"'));
+    expect(stage.match(/class="gm st-el shown"/g)?.length).toBe(2);
+    expect(stage.match(/1: to respond/g)!.length).toBeGreaterThanOrEqual(6);
+    const sys = stage.slice(stage.indexOf('data-el="sys"'));
+    expect(sys).toContain("Same in both arms");
+    expect(sys).toContain("Looking at your calendar, you're free");
+    expect(stage).toContain("You've connected your email");
+    expect(stage).toContain("not a screenshot of Fyxer or Gmail");
   });
 
   it("reveals treatment elements cumulatively, and every element exists in the stage markup", () => {
@@ -44,6 +67,25 @@ describe("before/after storyboard", () => {
     expect(html).toContain('id="story-reduce"');
     expect(html).toContain('aria-live="polite"');
     expect(readFileSync("public/style.css", "utf8")).toContain("prefers-reduced-motion: reduce");
+  });
+});
+
+describe("product UI references", () => {
+  it("cites first-party screenshots and video frames, each with what it shows", async () => {
+    const { UI_REFERENCES } = await import("../public/engine/evidence.js");
+    expect(UI_REFERENCES.length).toBeGreaterThanOrEqual(6);
+    for (const r of UI_REFERENCES) {
+      expect(r.url, r.id).toMatch(/^https:\/\/(content\.gitbook\.com|vimeo\.com\/11407|docs\.fyxer\.com|www\.fyxer\.com)/);
+      expect(r.shows.length, r.id).toBeGreaterThan(40);
+      expect(doc("evidence-and-assumptions")).toContain(r.url);
+    }
+    for (const id of ["R1", "R2", "R4"]) expect(html).toContain(id);
+    expect(html).toContain('id="ref-list"');
+  });
+  it("the hero keeps product value, growth hypothesis, instrumentation and guardrails separate", () => {
+    const layers = html.slice(html.indexOf('class="layers"'), html.indexOf("</section>", html.indexOf('class="layers"')));
+    for (const k of ["Product value · documented", "Growth hypothesis · to test", "Instrumentation", "Trust guardrails", "Nothing has been measured", "within 24h of email connection, among exposed new trials"]) expect(layers).toContain(k);
+    expect(layers).not.toMatch(/\d+(\.\d+)?\s*%/);
   });
 });
 

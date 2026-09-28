@@ -1,31 +1,39 @@
-# PRD: Transparent first-value preview
+# PRD: Start-here welcome email (inbox-native first value)
 
 > **Independent concept by Ayo Ahmed; not affiliated with Fyxer.** Speculative. Synthetic data only. Tags: `E#` = documented in a public source (see [5 Whys](FIVE_WHYS.md)); `A#` = assumption, not yet verified.
 
-## 1. Problem
+## 1. The user's job (first principles)
 
-Fyxer's public setup guide says that after connection, the **300 most recent emails are categorised** (E1), and **drafts are written for emails needing a response in To do / To respond**, found under Drafts or attached to the email (E2). The value is generated. What's unknown from the outside is whether a new trial user, in their first session, **notices** that value, **understands** why it's there, and **trusts** it enough to send (A1, A2).
+A founder or executive has minutes between meetings. After connecting email, the job is not "try an AI assistant". It is:
 
-Three documented setup conditions can make that value hard to see or absent:
+1. **Find the thread that needs me.** Fyxer ranks action emails at the top as To do / To respond, with FYI next and notifications and marketing below (E14). In Gmail these are numbered, colour-coded labels, shown in the inbox and under the label (E17, R1, R4). Outlook uses folders and coloured category tags (E18, R7).
+2. **Trust the draft.** Drafts are written in the user's tone from the thread and prior context (E15), and sit in Gmail's own reply box inside the thread (E2, R2).
+3. **Edit safely, then send.** The user reviews, edits and presses Send. Fyxer never sends without review (E10). Light edits teach tone (E11).
+4. **For scheduling, verify the times.** Scheduling drafts propose windows from the user's live calendar (E19). Fyxer's own note in the thread already lists the free times it found (R2). It does not check other attendees' availability (E20). Calendar connects separately from email (E4).
+5. **Stay in the inbox.** Day-to-day work happens in the email client; the Dashboard is for setup (E21).
 
-- conversation view off, which the docs say is needed to thread emails and generate drafts (E3)
-- Gmail labels hidden, which makes the categorisation invisible (E9)
-- Microsoft 365 admin approval, which blocks connection and uses up trial time (E6)
+## 2. Problem (hypothesis, not a measured bottleneck)
 
-The trial lasts 7 days (E7), so every day before first value is a day of the trial gone.
+The product already delivers each step above inside Gmail/Outlook. What can't be known from outside is whether a time-poor user, in session one, **finds** those three To respond threads among 300 sorted emails, **trusts** the draft enough to send, and knows what to fix when drafts are missing (A8, A1, A2). The inbox's own onboarding message ("You've connected your email · Here's what to expect", labelled 2: FYI, R1) is generic.
 
-## 2. Goal and non-goals
+Documented conditions can hide or block the value: conversation view off (E3), Gmail labels hidden (E9), calendar not connected (E4), Microsoft 365 admin approval (E6). Right after connection, drafts may not exist yet; the docs say more appear as emails come through (E16). The trial lasts 7 days (E7).
 
-**Goal:** raise the share of new trial users who **send a first Fyxer draft within 24h of connecting email**, with no harm to trust guardrails.
+**Kept distinct:** product value (documented, above) · growth hypothesis (this section, to test) · instrumentation (primary metric: first Fyxer draft sent within 24h of email connection, among exposed new trials) · trust guardrails (section 5). There is no Fyxer data or conversion figure anywhere in this PRD.
+
+## 3. Goal and non-goals
+
+**Goal (to test):** learn whether naming the threads that need the user, in the inbox, changes the share of new trial users who **send a first Fyxer draft within 24h of connecting email**, with no harm to trust guardrails.
 
 **Non-goals**
 
 - Changing whether, when or how drafts are generated. The treatment is a visibility layer only.
 - Generating a draft when none exists. If there's no To do email, the preview says so (E5, E12).
+- Adding a new surface or workflow. The treatment reuses a message already in the inbox and links into existing threads.
+- Adding scheduling reasoning. Fyxer already explains calendar times in the thread (R2).
 - Solving admin approval. That happens before exposure and is a separate bet (see Tom in the simulator).
 - Any claim about Fyxer's current metrics. This PRD has no baselines.
 
-## 3. Users (synthetic personas in the simulator)
+## 4. Users (synthetic personas in the simulator)
 
 | Persona | Setup | What it tests |
 |---|---|---|
@@ -35,35 +43,39 @@ The trial lasts 7 days (E7), so every day before first value is a day of the tri
 | Dan, AE, Gmail on mobile | Labels hidden (E9) | Value exists but is invisible |
 | Sam, ops manager, Microsoft 365 | 0 To do in last 300 | Honest empty state, no invented value |
 
-## 4. Solution
+## 5. Solution
 
-After the first categorisation pass, the treatment shows one in-product screen:
+The control is Gmail/Outlook as documented: labels, drafts in threads, and Fyxer's generic welcome email.
 
-1. **What we sorted**: counts by category for the emails considered (at most 300).
-2. **Your first draft**: the most recent To do email that has a draft, with the draft text.
-3. **Why this draft**: the context used (thread length, prior replies and tone source, calendar availability or its absence) and where the draft lives in Gmail/Outlook. It also restates that nothing sends without review (E10).
-4. **Setup readiness**: conversation view, label visibility (Gmail), calendar (E4), workspace approval and tone. Each item has its reason and a fix.
-5. **Empty state**: if nothing needs a reply, it says so and offers the documented routes (Chat, forward, custom rules, E12).
+In the treatment, after the first categorisation pass, **the same welcome email** becomes specific. It stays in the inbox, in the user's normal flow:
 
-The control is the lab's rendering of the public checklist's next steps: check your inbox, and review your first drafts in the email client.
+1. **What was sorted**: counts per label for the emails considered (at most 300).
+2. **Start here**: the To respond threads that already have a draft, each linking to the Gmail/Outlook thread where the draft sits.
+3. **Why each needs you, and what the draft used**: one line per thread (the thread, past replies, the calendar), plus "you edit and send; light edits teach tone" (E10, E11).
+4. **Scheduling**: whether the calendar is connected, and that only the user's own availability is checked (E4, E20).
+5. **Setup readiness**: conversation view, label visibility (Gmail), calendar, workspace approval and tone guidance, each with its reason and fix.
+6. **Empty state**: if nothing needs a reply, it says so, repeats that drafts appear as emails come in (E16), and offers Chat, forwarding and custom rules (E12).
+
+The thread, draft, Send button and Fyxer's calendar note are identical in both arms.
 
 ### Requirements
 
 | # | Requirement | Priority |
 |---|---|---|
-| R1 | The preview renders only after `initial_categorization_completed`. The system behaviour is identical across arms | Must |
-| R2 | The draft shown is one that already exists. The preview never generates or sends | Must |
+| R1 | The start-here content renders only after `initial_categorization_completed`. The system behaviour is identical across arms | Must |
+| R2 | Only threads with an existing draft are named. The email never generates, edits or sends a draft; each link opens the user's own thread | Must |
 | R3 | "Why this draft" lists only context the draft actually used | Must |
 | R4 | Readiness checks are evaluated and logged in **both** arms, so segments exist for control | Must |
 | R5 | The empty state is honest when `to_do_count = 0` | Must |
-| R6 | The preview can be dismissed, and the user can go straight to their inbox | Must |
+| R6 | No new surface: delivered in the existing welcome email, readable at mobile widths, and ignorable like any email | Must |
 | R7 | Analytics carry no message content or PII (see [taxonomy](EVENT_TAXONOMY.md)) | Must |
 | R8 | Works at mobile widths (Dan) | Should |
 | R9 | The copy avoids over-claiming accuracy. Light edits teach tone (E11) | Should |
 
 ### User stories
 
-- As a new trial user who has just connected email, I want to see that Fyxer has done something useful, so I know setup worked.
+- As a founder who has just connected email, I want the few threads that need me named in my inbox, so I don't scan 300 sorted emails.
+- As that user, when a draft proposes meeting times, I want to know they came from my calendar and what wasn't checked, so I can send safely.
 - As that user, I want to understand why a draft says what it says, so I can decide whether to trust and send it.
 - As that user, if drafts are missing or invisible, I want to know what's causing it and how to fix it in one step.
 - As a user with nothing to reply to, I want to be told so plainly, rather than wondering whether the product works.
@@ -99,21 +111,21 @@ The control is the lab's rendering of the public checklist's next steps: check y
 2. Ship only under the pre-registered rule. Size any rollout claim to the CI lower bound.
 3. Ramp 10% → 50% → 100% with guardrails monitored at each step, and keep a holdback for one trial cycle to check persistence.
 
-## 5. Success measures
+## 6. Success measures
 
 See [Experiment design](EXPERIMENT_DESIGN.md). The primary metric is first draft sent within 24h of connecting email. The guardrails are heavy-edit share, first-draft discards, disconnects within 72h, support contacts and trial cancellations.
 
-## 6. Risks
+## 7. Risks
 
 | Risk | Mitigation |
 |---|---|
 | The preview adds friction on the happy path (A5) | Dismissible, one screen. Watch time-to-first-view |
 | Over-trust: users send drafts they then regret | Heavy-edit and discard guardrails. "Why this draft" shows its limits |
-| Showing email snippets in-product feels invasive | Disconnect guardrail. Moderated sessions check comfort first |
+| A more specific onboarding email feels invasive | Disconnect guardrail. Moderated sessions check comfort first |
 | The effect comes only from readiness fixes, not from the preview | Pre-registered readiness segment. A 2×2 follow-up if needed |
 | The live product already does something similar (E8) | Check the current flow before building (48–72h plan, day 0) |
 
-## 7. Open questions
+## 8. Open questions
 
 - Does the effect, if any, come from the preview or from readiness feedback alone? The readiness segment gives a first read, and a 2×2 would separate them.
 
