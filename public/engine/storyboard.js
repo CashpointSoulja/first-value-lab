@@ -4,6 +4,7 @@
  * @typedef {object} Scene
  * @property {string} id
  * @property {string} title
+ * @property {string} short Stepper label.
  * @property {string} before What the control (documented flow) shows at this point.
  * @property {string} after What the treatment (transparent preview) shows at this point.
  * @property {string} why Why this interface choice matters.
@@ -17,6 +18,7 @@ export const STORYBOARD = [
   {
     id: "problem",
     title: "The first-session problem",
+    short: "Problem",
     before: "Setup finishes with the checklist's next steps: check your inbox and review drafts in Gmail or Outlook. The drafts already exist, but the user has to go and find them.",
     after: "Nothing yet. The treatment only diverges after categorisation completes.",
     why: "Drafts already exist for To do / To respond emails (E2). What's unknown is whether a new user notices, understands and trusts one in session one (A1). That makes this a recognition problem, not a generation problem, so the design must not change what the system does.",
@@ -27,6 +29,7 @@ export const STORYBOARD = [
   {
     id: "system",
     title: "The underlying system is unchanged",
+    short: "Same system",
     before: "The 300 most recent emails are categorised, and drafts are written for To do / To respond emails.",
     after: "Identical: same categorisation, same drafts, same timing.",
     why: "Holding the system constant in both arms (E1, E2) means any difference comes from what the user sees. It also keeps the treatment from posing as a fix for behaviour the product already has.",
@@ -37,6 +40,7 @@ export const STORYBOARD = [
   {
     id: "preview",
     title: "Show the value where attention already is",
+    short: "Preview",
     before: "The user leaves setup and scans a full inbox for labels and drafts.",
     after: "One screen shows what was sorted (counts by category) and the first draft that already exists, in full.",
     why: "The moment after connection is when attention is highest. Showing the whole draft, not just a count, lets the user judge it. The preview only displays a draft that already exists: it never generates or sends one (E10).",
@@ -47,6 +51,7 @@ export const STORYBOARD = [
   {
     id: "rationale",
     title: "Make the reasoning and the location visible",
+    short: "Why & where",
     before: "A draft sits under Drafts or on the email, with no explanation of why it was written.",
     after: "'Why this draft' lists the context it used. 'Where it lives' points back to the draft in the inbox. It restates that nothing sends without review.",
     why: "Trust needs visible reasoning (A2). Pointing to where the draft lives builds the habit in the email client, which is where drafts are (E2). The copy invites light edits, which teach tone (E11), rather than blind sends.",
@@ -57,6 +62,7 @@ export const STORYBOARD = [
   {
     id: "readiness",
     title: "Name the setup cause in context",
+    short: "Readiness",
     before: "If conversation view is off or labels are hidden, drafts are missing or invisible, and the fix lives in help pages.",
     after: "A readiness list names each condition, why it matters, and how to fix it.",
     why: "The conditions are documented (E3, E9, E4), but only in help pages. How common they are is an assumption (A3). Naming the condition that applies to this user turns an unexplained absence into a fix. The checks are logged in both arms, so control has the same segments.",
@@ -67,6 +73,7 @@ export const STORYBOARD = [
   {
     id: "empty",
     title: "Be honest when there is nothing to show",
+    short: "Empty state",
     before: "If nothing in the last 300 needs a reply, the user finds no drafts and gets no explanation.",
     after: "An empty state says so plainly and offers the documented manual routes: Chat, forwarding and custom rules.",
     why: "Some users may have no To do email in their last 300 (A6). Inventing a draft would damage trust. Pointing to the documented routes (E5, E12) keeps the preview truthful.",
@@ -77,6 +84,7 @@ export const STORYBOARD = [
   {
     id: "decision",
     title: "What would decide it",
+    short: "Decision",
     before: "Control stays exactly as documented.",
     after: "Each choice maps to an event. The primary metric is a first draft sent within 24h. Guardrails catch over-trust (heavy edits, discards), discomfort (disconnects, support contacts) and cancellations.",
     why: "No outcome is shown here, because none exists. This is design reasoning. The pre-registered A/B decision rule decides, after the 48–72h checks show the problem is real (A1, A3).",

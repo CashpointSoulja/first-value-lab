@@ -42,7 +42,10 @@ function route() {
   if (active !== "story") story.stop?.();
   const link = $(`.tabs a[data-tab="${active}"]`);
   const bar = $(".tabs");
-  if (link && bar) bar.scrollLeft = Math.max(0, link.offsetLeft - bar.offsetLeft - 24);
+  if (link && bar) {
+    const right = link.getBoundingClientRect().right - bar.getBoundingClientRect().left + bar.scrollLeft;
+    bar.scrollLeft = right > bar.clientWidth ? right - bar.clientWidth + 24 : 0;
+  }
   if (currentTab !== null && currentTab !== active) window.scrollTo(0, 0);
   currentTab = active;
 }
@@ -58,6 +61,11 @@ function initOverview() {
 }
 
 /* ---------------- Before / after ---------------- */
+const disclaimer = $("[data-disclaimer]");
+const syncDisclaimerHeight = () => document.documentElement.style.setProperty("--dis-h", `${disclaimer.offsetHeight}px`);
+new ResizeObserver(syncDisclaimerHeight).observe(disclaimer);
+syncDisclaimerHeight();
+
 const story = { i: 0, timer: null, reduce: false, seen: new Set([0]), stop: null };
 const STORY_MS = 7000;
 
@@ -75,7 +83,7 @@ function initStory(rest) {
   $("#story-reduce").addEventListener("change", (e) => setReduce(e.target.checked));
 
   $("#story-dots").innerHTML = STORYBOARD.map(
-    (s, i) => `<li><button type="button" data-i="${i}" aria-label="Scene ${i + 1} of ${STORYBOARD.length}: ${esc(s.title)}">${i + 1}</button></li>`,
+    (s, i) => `<li><button type="button" data-i="${i}" aria-label="Scene ${i + 1} of ${STORYBOARD.length}: ${esc(s.title)}"><span class="n">${i + 1}</span><span class="t">${esc(s.short)}</span></button></li>`,
   ).join("");
   $("#story-dots").addEventListener("click", (e) => {
     const b = e.target.closest("button[data-i]");
@@ -109,7 +117,10 @@ function showScene(i, updateHash = true) {
   const focus = new Set(s.focus);
   $$(".st-el", stage).forEach((el) => {
     const k = el.dataset.el;
-    if (k.startsWith("a-")) el.classList.toggle("shown", shown.has(k));
+    if (k.startsWith("a-")) {
+      el.classList.toggle("shown", shown.has(k));
+      el.classList.toggle("past", shown.has(k) && !s.reveal.includes(k));
+    }
     el.classList.remove("focus");
     if (focus.has(k)) { void el.offsetWidth; el.classList.add("focus"); }
   });
@@ -121,9 +132,11 @@ function showScene(i, updateHash = true) {
   });
   $("#story-prev").disabled = story.i === 0;
   $("#story-next").disabled = story.i === STORYBOARD.length - 1;
-  $("#story-caption").innerHTML = `<p class="label">Scene ${story.i + 1} of ${STORYBOARD.length}</p><h2>${esc(s.title)}</h2>
-    <div class="cap-grid"><p><b>Before (control):</b> ${tagged(s.before)}</p><p><b>After (treatment):</b> ${tagged(s.after)}</p></div>
-    <p class="cap-why"><b>Why it matters:</b> ${tagged(s.why)}</p>`;
+  $("[data-now=before]", stage).textContent = s.before;
+  $("[data-now=after]", stage).textContent = s.after;
+  $("#story-caption").innerHTML = `<div class="cap-head"><p class="label">Scene ${story.i + 1} of ${STORYBOARD.length}</p><h2>${esc(s.title)}</h2></div>
+    <p class="cap-why"><b>Why it matters:</b> ${tagged(s.why)}</p>
+    <p class="sr-only">Before (control): ${esc(s.before)} After (treatment): ${esc(s.after)}</p>`;
   if (updateHash) history.replaceState(null, "", `#story/${s.id}`);
 }
 function playStory() {

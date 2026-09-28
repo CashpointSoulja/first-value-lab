@@ -38,7 +38,7 @@ describe("before/after storyboard", () => {
   });
 
   it("keeps the disclaimer inside the stage and has a text fallback and reduced-motion control", () => {
-    const stage = html.slice(html.indexOf('id="stage"'), html.indexOf('id="story-caption"'));
+    const stage = html.slice(html.indexOf('id="stage"'), html.indexOf('id="story-text"'));
     expect(stage).toContain("Independent concept by Ayo Ahmed; not affiliated with Fyxer. Synthetic data.");
     expect(html).toContain('id="story-text"');
     expect(html).toContain('id="story-reduce"');
@@ -81,5 +81,13 @@ describe("brand use", () => {
     expect(html).toContain('class="logo"');
     expect(html.slice(html.indexOf("<footer"))).toContain("imply no endorsement");
     expect(DISCLAIMER).toBe("Independent concept by Ayo Ahmed; not affiliated with Fyxer.");
+  });
+  it("keeps the header to the lab's own brand and nav, with the Fyxer subject lockup in the hero", () => {
+    const header = html.slice(html.indexOf('<header class="top">'), html.indexOf("</header>"));
+    expect(header).not.toContain("fyxer-wordmark");
+    expect(header).toContain("First Value Lab");
+    const hero = html.slice(html.indexOf('class="hero"'), html.indexOf("bet-strip"));
+    expect(hero).toContain("data-subject");
+    expect(hero).toContain("fyxer-wordmark-orange.webp");
   });
 });

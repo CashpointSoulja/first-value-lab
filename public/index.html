@@ -16,19 +16,15 @@
   <div class="disclaimer" role="note" aria-label="Disclaimer" data-disclaimer>
     <div class="wrap dis-inner">
       <span class="dis-tag">Concept</span>
-      <p><strong>Independent concept by Ayo Ahmed; not affiliated with Fyxer.</strong> <span class="dis-syn">Synthetic data only.</span> <span class="dis-more">Speculative prototype: no real OAuth, no email is read or sent, no backend AI, no Fyxer data or metrics. Fyxer's logo identifies the subject and implies no endorsement.</span></p>
+      <p><strong>Independent concept by Ayo Ahmed; not affiliated with Fyxer.</strong> <span class="dis-syn">Synthetic data only.</span> <span class="dis-more">No real OAuth, email, backend AI or Fyxer data. The Fyxer logo only identifies the subject.</span></p>
     </div>
   </div>
   <header class="top">
     <div class="wrap top-inner">
       <a class="brand" href="#overview" aria-label="First Value Lab home">
         <span class="logo" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M9 17.5l4.5 4.5L23 11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span class="brand-text"><b>First Value Lab</b><small>Growth concept · synthetic</small></span>
+        <span class="brand-text"><b>First Value Lab</b><small>Independent growth concept</small></span>
       </a>
-      <div class="subject" data-subject>
-        <span class="subj-text"><span>Concept about</span><small>Not affiliated · no endorsement</small></span>
-        <img src="/brand/fyxer-wordmark-orange.webp" width="56" height="20" alt="Fyxer" />
-      </div>
       <nav class="tabs" aria-label="Sections">
         <a href="#overview" data-tab="overview">Overview</a>
         <a href="#story" data-tab="story">Before/after</a>
@@ -45,26 +41,30 @@
     <!-- OVERVIEW -->
     <section id="tab-overview" class="tab" hidden>
       <div class="hero">
-        <div class="wrap hero-grid">
-          <div>
-            <p class="eyebrow">A growth question, not a product claim</p>
-            <h1>After someone connects their inbox, do they <em>recognise</em> a first draft they can trust?</h1>
-            <p class="lede">Fyxer's public docs describe what happens at connection: the 300 most recent emails are categorised, and drafts are written for emails in To do / To respond. This lab asks a narrower growth question: in the first session, does the user see that value, understand it, and act on it? It prototypes one testable answer: a transparent first-value preview with setup-readiness feedback.</p>
-            <div class="cta-row">
-              <a class="btn primary" href="#simulator">Open the trial simulator</a>
-              <a class="btn" href="#story">Watch the before/after</a>
-              <a class="btn" href="#experiment">See the experiment design</a>
+        <div class="wrap hero-inner">
+          <div class="hero-main">
+            <div class="subject" data-subject>
+              <span class="subj-k">Concept about</span>
+              <img src="/brand/fyxer-wordmark-orange.webp" width="62" height="22" alt="Fyxer" />
+              <span class="subj-note">Independent · Not affiliated · No endorsement</span>
             </div>
-            <p class="fine">Built by Devin (an AI agent) at Ayo's direction, for Ayo's review. Every name, thread and draft is invented.</p>
+            <h1>Do new users <em>recognise</em> a first draft they can trust?</h1>
+            <p class="lede">Fyxer's public docs say that on connection the 300 most recent emails are categorised, and drafts are written for To do / To respond emails. This lab asks whether a new user sees, understands and acts on that value in session one. It prototypes one testable answer: a transparent first-value preview with setup-readiness feedback.</p>
+            <div class="cta-row">
+              <a class="btn primary lg" href="#story">Watch the before/after</a>
+              <a class="btn lg" href="#simulator">Try the trial simulator</a>
+              <a class="text-link" href="#experiment">Experiment design <span aria-hidden="true">→</span></a>
+            </div>
           </div>
-          <div class="hero-card" aria-label="The bet in one card">
+          <section class="bet-strip" aria-label="The bet in three steps">
             <p class="card-kicker">The bet</p>
             <ol class="bet">
-              <li><span>Documented</span>Connection triggers categorisation of the last 300 emails, and drafts are written for To do / To respond emails.</li>
-              <li><span class="amber">Assumed</span>Some users don't notice, understand or trust that first draft in session one.</li>
-              <li><span class="teal">Hypothesis, to test</span>Proposed experiment: show what was sorted, the first draft and why it was written, and what setup is holding drafts back. Then measure whether more users send a first draft within 24h, with trust guardrails holding. Nothing has been measured yet.</li>
+              <li><span>1 · Documented</span>Connection triggers categorisation of the last 300 emails, and drafts are written for To do / To respond emails.</li>
+              <li><span class="amber">2 · Assumed</span>Some users don't notice, understand or trust that first draft in session one.</li>
+              <li><span class="teal">3 · Hypothesis, to test</span>Proposed experiment: show what was sorted, the first draft and why it was written, and what setup is holding drafts back. Then measure whether more users send a first draft within 24h, with trust guardrails holding. Nothing has been measured yet.</li>
             </ol>
-          </div>
+          </section>
+          <p class="fine">Built by Devin (an AI agent) at Ayo's direction, for Ayo's review. Every name, thread and draft is invented.</p>
         </div>
       </div>
       <div class="wrap section">
@@ -98,17 +98,19 @@
         </div>
         <div class="panel story" id="story" tabindex="-1">
           <div class="story-bar">
+            <ol class="story-dots" id="story-dots" aria-label="Scenes"></ol>
             <div class="story-controls">
               <button class="btn sm" type="button" id="story-prev">Back</button>
               <button class="btn sm primary" type="button" id="story-play" aria-pressed="false">Play</button>
               <button class="btn sm" type="button" id="story-next">Next</button>
+              <label class="story-motion"><input type="checkbox" id="story-reduce" /> Reduce motion</label>
             </div>
-            <ol class="story-dots" id="story-dots" aria-label="Scenes"></ol>
-            <label class="story-motion"><input type="checkbox" id="story-reduce" /> Reduce motion</label>
           </div>
+          <div class="story-caption" id="story-caption" aria-live="polite"></div>
           <div class="stage" id="stage" data-scene="0" aria-hidden="true">
             <div class="pane before">
               <p class="pane-label"><span class="chip neutral">Before</span> Control: documented setup flow</p>
+              <p class="pane-now" data-now="before"></p>
               <div class="st-el shown" data-el="b-next">
                 <div class="mock-card"><b>You're all set</b><p class="small muted" style="margin:4px 0 8px">Next: check your inbox and review your first drafts in Gmail.</p><span class="btn sm">Open Gmail</span></div>
               </div>
@@ -123,6 +125,7 @@
             </div>
             <div class="pane after">
               <p class="pane-label"><span class="chip teal">After</span> Treatment: transparent first-value preview</p>
+              <p class="pane-now" data-now="after"></p>
               <p class="small muted st-wait">The arms diverge only after categorisation finishes.</p>
               <div class="st-el" data-el="a-sorted">
                 <div class="mock-card"><b>What we sorted: your 300 most recent emails</b>
@@ -158,7 +161,6 @@ Maya</pre></div>
             </div>
             <p class="stage-dis">Independent concept by Ayo Ahmed; not affiliated with Fyxer. Synthetic data. Illustrative mock, not Fyxer's UI.</p>
           </div>
-          <div class="story-caption" id="story-caption" aria-live="polite"></div>
         </div>
         <details class="panel story-text" id="story-text">
           <summary>Text version: the full storyboard</summary>
