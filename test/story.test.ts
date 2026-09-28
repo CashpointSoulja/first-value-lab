@@ -78,16 +78,20 @@ describe("brand use", () => {
     const subject = html.slice(html.indexOf("data-subject"), html.indexOf("</div>", html.indexOf("data-subject")));
     expect(subject).toContain("Concept about");
     expect(subject).toContain("Not affiliated");
-    expect(html).toContain('class="logo"');
     expect(html.slice(html.indexOf("<footer"))).toContain("imply no endorsement");
     expect(DISCLAIMER).toBe("Independent concept by Ayo Ahmed; not affiliated with Fyxer.");
   });
-  it("keeps the header to the lab's own brand and nav, with the Fyxer subject lockup in the hero", () => {
-    const header = html.slice(html.indexOf('<header class="top">'), html.indexOf("</header>"));
-    expect(header).not.toContain("fyxer-wordmark");
-    expect(header).toContain("First Value Lab");
-    const hero = html.slice(html.indexOf('class="hero"'), html.indexOf("bet-strip"));
-    expect(hero).toContain("data-subject");
-    expect(hero).toContain("fyxer-wordmark-orange.webp");
+  it("puts the labelled Fyxer subject top-left in the header, with First Value Lab as the concept title", () => {
+    const brand = html.slice(html.indexOf('<div class="brand">'), html.indexOf('<nav class="tabs"'));
+    expect(brand).toContain("data-subject");
+    expect(brand).toContain("fyxer-wordmark-orange.webp");
+    expect(brand.indexOf("fyxer-wordmark")).toBeLessThan(brand.indexOf("First Value Lab"));
+    expect(brand).toContain("Not affiliated");
+  });
+
+  it("explains where the concept adds value without claiming an outcome", () => {
+    const value = html.slice(html.indexOf('id="value"'), html.indexOf("What changes, and what doesn't"));
+    for (const s of ["Hypothesis, not a measured Fyxer bottleneck", "First Fyxer draft sent within 24h", "among exposed new trials", "Secondary, downstream", "Trial-to-paid", "Trust guardrails", "Why validate before shipping", "What it hands a growth team", "Fit with the role", "E7", "E13", "A4"]) expect(value).toContain(s);
+    expect(value).not.toMatch(/\d+(\.\d+)?\s*%/);
   });
 });

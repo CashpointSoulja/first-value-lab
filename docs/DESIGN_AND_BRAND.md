@@ -26,7 +26,7 @@ The lab is a conversation piece about Fyxer's onboarding, so a reviewer should b
 | Headline type | **Poppins 600**, not f37Hybrid | f37Hybrid is a commercial typeface licensed to Fyxer. Copying it would need a licence, so the lab uses Poppins 600 with tighter tracking instead |
 | Emphasis | Orange (`#ff5a39`) words inside dark-navy headlines, as on the homepage | Recognisable, low-cost cue |
 | Buttons | `#1e1e1e`, radius 8 px, Poppins 600 | Matches the observed CTAs |
-| Logo | The Fyxer wordmark appears **once**, in the header, framed as "Concept about [Fyxer] · Not affiliated · no endorsement". It sits beside the lab's own mark (a check in a dark square), not in place of it. A 320 px copy is served from `public/brand/` | Identifies the subject without looking like Fyxer's own branding. It isn't in the favicon, the mocks or the title |
+| Logo | The Fyxer wordmark appears **once**, top-left in the header, as a labelled subject: "Concept about [Fyxer] · Independent · Not affiliated · No endorsement". "First Value Lab" sits directly below as the concept title, and the navigation sits on the right. A 320 px copy is served from `public/brand/` | One clear hierarchy: the subject is named first and the concept title follows, so the page can't be mistaken for Fyxer's own. The logo isn't in the favicon, the mocks or the page title |
 | Mock screens | Labelled "Illustrative mock, not Fyxer's UI", with the disclaimer inside the frame | Stops screenshots being taken out of context |
 
 ## Disclaimer placement (every view)

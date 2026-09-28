@@ -21,10 +21,14 @@
   </div>
   <header class="top">
     <div class="wrap top-inner">
-      <a class="brand" href="#overview" aria-label="First Value Lab home">
-        <span class="logo" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M9 17.5l4.5 4.5L23 11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span class="brand-text"><b>First Value Lab</b><small>Independent growth concept</small></span>
-      </a>
+      <div class="brand">
+        <p class="subject" data-subject>
+          <span class="subj-k">Concept about</span>
+          <img src="/brand/fyxer-wordmark-orange.webp" width="84" height="30" alt="Fyxer" />
+          <span class="subj-note">Independent · Not affiliated<span class="subj-long"> · No endorsement</span></span>
+        </p>
+        <a class="brand-title" href="#overview" aria-label="First Value Lab home">First Value Lab <small>A growth-product concept by Ayo Ahmed</small></a>
+      </div>
       <nav class="tabs" aria-label="Sections">
         <a href="#overview" data-tab="overview">Overview</a>
         <a href="#story" data-tab="story">Before/after</a>
@@ -43,11 +47,7 @@
       <div class="hero">
         <div class="wrap hero-inner">
           <div class="hero-main">
-            <div class="subject" data-subject>
-              <span class="subj-k">Concept about</span>
-              <img src="/brand/fyxer-wordmark-orange.webp" width="62" height="22" alt="Fyxer" />
-              <span class="subj-note">Independent · Not affiliated · No endorsement</span>
-            </div>
+            <p class="eyebrow">Activation · first session after connecting email</p>
             <h1>Do new users <em>recognise</em> a first draft they can trust?</h1>
             <p class="lede">Fyxer's public docs say that on connection the 300 most recent emails are categorised, and drafts are written for To do / To respond emails. This lab asks whether a new user sees, understands and acts on that value in session one. It prototypes one testable answer: a transparent first-value preview with setup-readiness feedback.</p>
             <div class="cta-row">
@@ -65,6 +65,56 @@
             </ol>
           </section>
           <p class="fine">Built by Devin (an AI agent) at Ayo's direction, for Ayo's review. Every name, thread and draft is invented.</p>
+        </div>
+      </div>
+      <div class="wrap section" id="value">
+        <div class="page-head">
+          <p class="eyebrow">Where this adds value</p>
+          <h2>A ready-to-run activation bet, and how I'd work in the role</h2>
+          <p class="lede sm">The value isn't a claimed uplift, because there isn't one. It's a way to decide faster, and more cheaply, whether one activation idea is worth building. It comes with the evidence, instrumentation and decision rules already worked out.</p>
+        </div>
+        <section class="chain panel" aria-labelledby="chain-h">
+          <div class="chain-head">
+            <h3 id="chain-h">The growth chain this tests</h3>
+            <span class="chip amb">Hypothesis, not a measured Fyxer bottleneck</span>
+          </div>
+          <ol class="chain-steps">
+            <li><span class="chain-k">Documented</span><b>Email connected</b><small>Last 300 emails sorted, drafts written (E1, E2)</small></li>
+            <li><span class="chain-k amb">Assumed</span><b>Recognises a trustworthy first draft</b><small>In session one (A1, A2)</small></li>
+            <li class="primary"><span class="chain-k">Primary metric</span><b>First Fyxer draft sent within 24h</b><small>Of email connection, among exposed new trials</small></li>
+            <li><span class="chain-k amb">Assumed</span><b>Keeps using it during the 7-day trial</b><small>Trial length from E7</small></li>
+            <li class="secondary"><span class="chain-k">Secondary, downstream</span><b>Trial-to-paid</b><small>Read, not the decision metric at this sample (A4)</small></li>
+          </ol>
+          <p class="chain-guard"><b>Trust guardrails, which must hold:</b> heavy-edit share, first-draft discards, email disconnects within 72h, support contacts by day 3, trial cancellations.</p>
+        </section>
+        <div class="grid3 value-grid">
+          <article class="panel value">
+            <p class="label">1 · Why validate before shipping</p>
+            <h3>A 7-day trial leaves little room to miss day one</h3>
+            <p>A user who connects and doesn't recognise a useful draft has already used part of a short trial (E7). That makes the first 24h the earliest point where a change can be seen and measured. Trial-to-paid comes too late and is too sparse to decide on at a realistic sample (A4). The preview also shows why a draft was written, which can build trust or backfire, so it ships only if the guardrails hold. The 48–72h checks come first, to confirm the problem is real (A1, A3) before any build.</p>
+          </article>
+          <article class="panel value">
+            <p class="label">2 · What it hands a growth team</p>
+            <h3>Spec, events, test and kill rules</h3>
+            <ul class="value-list">
+              <li><a href="#docs/prd">PRD</a> for a one-screen preview. It changes no model or pipeline behaviour.</li>
+              <li><a href="#events">Privacy-safe event taxonomy</a> with a payload validator</li>
+              <li><a href="#experiment">A/B design</a>: primary metric, guardrails, segments, power and runtime, pre-registered ship/stop rules</li>
+              <li><a href="#validate">48–72h validation</a> to check the problem is real before any build</li>
+            </ul>
+          </article>
+          <article class="panel value">
+            <p class="label">3 · Fit with the role</p>
+            <h3>The posting's toolkit, applied once</h3>
+            <p class="small muted" style="margin:0 0 8px">The posting asks for interviews, prototypes, experiments, product analytics, fake doors, usability testing and behavioural analysis (E13).</p>
+            <ul class="value-list map">
+              <li><b>Prototype</b><span><a href="#simulator">Trial simulator</a>, five personas</span></li>
+              <li><b>Fake door + usability</b><span><a href="#validate">48–72h plan</a></span></li>
+              <li><b>Experiment</b><span><a href="#experiment">Pre-registered A/B</a></span></li>
+              <li><b>Analytics</b><span><a href="#events">Events</a> and segments</span></li>
+              <li><b>Judgement</b><span><a href="#story">Why each choice</a>, evidence vs assumptions</span></li>
+            </ul>
+          </article>
         </div>
       </div>
       <div class="wrap section">
