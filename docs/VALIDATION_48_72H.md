@@ -43,6 +43,15 @@ For a small share of new trials, show a single "See your first draft and why" en
 |---|---|
 | A meaningful click-through, with the threshold set in advance from similar in-product prompts, **and** no support spike | Clicks far below comparable prompts |
 
+## Timeline
+
+| Window | Activity | Needs | Decision at the end |
+|---|---|---|---|
+| 0–24h | Desk check of the live flow. Instrumentation read, or a one-question survey | Test accounts; read access to trial events | Is the problem real and big enough? |
+| 24–48h | 5–6 moderated sessions with the prototype | Recruits; the simulator screens | Do users understand and trust the preview? |
+| 48–72h | Fake-door entry point for a small share of trials | A feature flag; a pre-set click-through threshold | Is there demand? |
+| 72h | One-page decision | The above | Build the A/B test, re-scope, or drop |
+
 ## Output at 72h
 
 A one-page decision:

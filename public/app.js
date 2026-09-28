@@ -5,6 +5,7 @@ import { ARMS, READINESS_CHECKS, simulateJourney } from "/engine/journey.js";
 import { EVENTS, COMMON_PROPERTIES, EXPERIMENT_ID, validateEvent } from "/engine/taxonomy.js";
 import { EXPERIMENT, GUARDRAILS, SEGMENTS } from "/engine/experiment.js";
 import { sampleSizePerArm, runtimeDays, decide } from "/engine/stats.js";
+import { STORYBOARD, revealedAt } from "/engine/storyboard.js";
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -23,9 +24,10 @@ function tagged(text) {
 const yes = (b) => (b ? '<span class="chip ok">Yes</span>' : '<span class="chip bad">No</span>');
 
 /* ---------------- Router ---------------- */
-const TABS = ["overview", "simulator", "events", "experiment", "validate", "docs"];
-const TITLES = { overview: "Overview", simulator: "Trial simulator", events: "Event taxonomy", experiment: "Experiment design", validate: "48–72h validation plan", docs: "Docs" };
+const TABS = ["overview", "story", "simulator", "events", "experiment", "validate", "docs"];
+const TITLES = { overview: "Overview", story: "Before/after walkthrough", simulator: "Trial simulator", events: "Event taxonomy", experiment: "Experiment design", validate: "48–72h validation plan", docs: "Docs" };
 const loaded = new Set();
+let currentTab = null;
 
 function route() {
   const [tab = "overview", ...rest] = location.hash.replace(/^#/, "").split("/");
@@ -37,7 +39,12 @@ function route() {
     loaded.add(active);
     INIT[active]?.(rest);
   } else ROUTE[active]?.(rest);
-  $(`.tabs a[data-tab="${active}"]`)?.scrollIntoView({ block: "nearest", inline: "nearest" });
+  if (active !== "story") story.stop?.();
+  const link = $(`.tabs a[data-tab="${active}"]`);
+  const bar = $(".tabs");
+  if (link && bar) bar.scrollLeft = Math.max(0, link.offsetLeft - bar.offsetLeft - 24);
+  if (currentTab !== null && currentTab !== active) window.scrollTo(0, 0);
+  currentTab = active;
 }
 
 /* ---------------- Overview ---------------- */
@@ -48,6 +55,94 @@ function initOverview() {
   $("#assumption-list").innerHTML = ASSUMPTIONS.map(
     (a) => `<li><span class="chip amb">${a.id}</span><div><p>${esc(a.text)}</p><p class="test">How to check: ${esc(a.test)}</p></div></li>`,
   ).join("");
+}
+
+/* ---------------- Before / after ---------------- */
+const story = { i: 0, timer: null, reduce: false, seen: new Set([0]), stop: null };
+const STORY_MS = 7000;
+
+function initStory(rest) {
+  const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const box = $("#story");
+  const setReduce = (on) => {
+    story.reduce = on;
+    box.classList.toggle("reduce", on);
+    $("#story-reduce").checked = on;
+    if (on) $("#story-text").open = true;
+  };
+  setReduce(mq.matches);
+  mq.addEventListener?.("change", (e) => setReduce(e.matches));
+  $("#story-reduce").addEventListener("change", (e) => setReduce(e.target.checked));
+
+  $("#story-dots").innerHTML = STORYBOARD.map(
+    (s, i) => `<li><button type="button" data-i="${i}" aria-label="Scene ${i + 1} of ${STORYBOARD.length}: ${esc(s.title)}">${i + 1}</button></li>`,
+  ).join("");
+  $("#story-dots").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-i]");
+    if (b) { stopStory(); showScene(Number(b.dataset.i)); }
+  });
+  $("#story-text-list").innerHTML = STORYBOARD.map(
+    (s) => `<li><b>${esc(s.title)}</b><p><b>Before (control):</b> ${tagged(s.before)}</p><p><b>After (treatment):</b> ${tagged(s.after)}</p><p><b>Why it matters:</b> ${tagged(s.why)}</p></li>`,
+  ).join("");
+  $("#story-prev").addEventListener("click", () => { stopStory(); showScene(story.i - 1); });
+  $("#story-next").addEventListener("click", () => { stopStory(); showScene(story.i + 1); });
+  $("#story-play").addEventListener("click", () => (story.timer ? stopStory() : playStory()));
+  box.addEventListener("keydown", (e) => {
+    if (e.target.closest("input, summary")) return;
+    if (e.key === "ArrowRight") { stopStory(); showScene(story.i + 1); e.preventDefault(); }
+    if (e.key === "ArrowLeft") { stopStory(); showScene(story.i - 1); e.preventDefault(); }
+  });
+  story.stop = stopStory;
+  routeStory(rest);
+}
+function routeStory([id]) {
+  const i = STORYBOARD.findIndex((s) => s.id === id);
+  showScene(i >= 0 ? i : story.i, false);
+}
+function showScene(i, updateHash = true) {
+  story.i = Math.max(0, Math.min(i, STORYBOARD.length - 1));
+  story.seen.add(story.i);
+  const s = STORYBOARD[story.i];
+  const stage = $("#stage");
+  stage.dataset.scene = String(story.i);
+  const shown = revealedAt(story.i);
+  const focus = new Set(s.focus);
+  $$(".st-el", stage).forEach((el) => {
+    const k = el.dataset.el;
+    if (k.startsWith("a-")) el.classList.toggle("shown", shown.has(k));
+    el.classList.remove("focus");
+    if (focus.has(k)) { void el.offsetWidth; el.classList.add("focus"); }
+  });
+  stage.classList.toggle("focusing", focus.size > 0);
+  $$("#story-dots button").forEach((b) => {
+    const n = Number(b.dataset.i);
+    n === story.i ? b.setAttribute("aria-current", "step") : b.removeAttribute("aria-current");
+    b.classList.toggle("seen", story.seen.has(n));
+  });
+  $("#story-prev").disabled = story.i === 0;
+  $("#story-next").disabled = story.i === STORYBOARD.length - 1;
+  $("#story-caption").innerHTML = `<p class="label">Scene ${story.i + 1} of ${STORYBOARD.length}</p><h2>${esc(s.title)}</h2>
+    <div class="cap-grid"><p><b>Before (control):</b> ${tagged(s.before)}</p><p><b>After (treatment):</b> ${tagged(s.after)}</p></div>
+    <p class="cap-why"><b>Why it matters:</b> ${tagged(s.why)}</p>`;
+  if (updateHash) history.replaceState(null, "", `#story/${s.id}`);
+}
+function playStory() {
+  if (story.i === STORYBOARD.length - 1) showScene(0);
+  const btn = $("#story-play");
+  btn.textContent = "Pause";
+  btn.setAttribute("aria-pressed", "true");
+  story.timer = setInterval(() => {
+    if (story.i >= STORYBOARD.length - 1) return stopStory();
+    showScene(story.i + 1);
+  }, STORY_MS);
+}
+function stopStory() {
+  clearInterval(story.timer);
+  story.timer = null;
+  const btn = $("#story-play");
+  if (!btn) return;
+  btn.textContent = "Play";
+  btn.setAttribute("aria-pressed", "false");
 }
 
 /* ---------------- Simulator ---------------- */
@@ -467,8 +562,8 @@ async function initValidate() {
   if (h1) h1.remove();
 }
 
-const INIT = { overview: initOverview, simulator: initSimulator, events: initEvents, experiment: initExperiment, validate: initValidate, docs: initDocs };
-const ROUTE = { simulator: (rest) => rest.length && (simFromHash(rest), setSim({}, false)), docs: routeDocs };
+const INIT = { overview: initOverview, story: initStory, simulator: initSimulator, events: initEvents, experiment: initExperiment, validate: initValidate, docs: initDocs };
+const ROUTE = { story: routeStory, simulator: (rest) => rest.length && (simFromHash(rest), setSim({}, false)), docs: routeDocs };
 
 window.addEventListener("hashchange", route);
 route();

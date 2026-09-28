@@ -31,7 +31,7 @@ export const EVIDENCE = [
 /** Things this lab assumes and has not verified. Each needs data Ayo does not have. */
 export const ASSUMPTIONS = [
   { id: "A1", text: "Some new users do not notice or open their first draft in the first session, even when one exists.", test: "Share of connected users with draft_generated but no draft_viewed within 24h." },
-  { id: "A2", text: "A user is more likely to send a first draft if they can see why it was written and what context it used.", test: "Moderated sessions (48-72h plan), then the A/B test." },
+  { id: "A2", text: "A user may be more likely to send a first draft if they can see why it was written and what context it used.", test: "Moderated sessions (48-72h plan), then the A/B test." },
   { id: "A3", text: "Setup gaps (conversation view off, labels hidden, calendar unconnected, admin approval pending) are common enough in week one to matter.", test: "Prevalence of each readiness_check_evaluated status at connection, by provider." },
   { id: "A4", text: "Sending a first Fyxer draft in the first 24h is a leading indicator of trial-to-paid conversion.", test: "Historical cohort analysis (needs internal data); trial_converted is a secondary read in the test." },
   { id: "A5", text: "A one-screen in-product preview adds little onboarding friction.", test: "Time to first draft_viewed and preview dismiss rate." },

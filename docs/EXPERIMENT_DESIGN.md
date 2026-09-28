@@ -4,7 +4,7 @@
 
 ## Hypothesis
 
-If newly connected trial users see what was sorted, their first draft with the context behind it, and what setup is holding drafts back, then more of them will send a first draft within 24h of connecting email. The mechanism: they can find and judge the draft in the moment (A1, A2). Trust guardrails will not worsen.
+If newly connected trial users see what was sorted, their first draft with the context behind it, and what setup is holding drafts back, then we predict a higher share of them will send a first draft within 24h of connecting email. The proposed mechanism: they can find and judge the draft in the moment (A1, A2). We also predict the trust guardrails will hold. These are predictions for the test to confirm or reject, and nothing here has been observed.
 
 ## Design
 
@@ -80,6 +80,22 @@ Apply in this order:
 7. **Iterate:** the CI still spans both 0 and the MDE. Revise the design. Extend only if an extension was pre-registered.
 
 The in-app decision sandbox runs exactly this function (`decide()` in `public/engine/stats.js`), and each branch has a unit test.
+
+## Analysis plan
+
+- **Population:** exposed users (intention to treat from `experiment_exposed`). Users who connect but never reach exposure are reported separately and are the same in both arms by design.
+- **Primary test:** two-sided two-proportion z-test, α = 0.05, 95% CI on the absolute difference. No variance-reduction covariates unless pre-registered.
+- **Guardrails:** one-sided tests for harm, each with its breach threshold agreed before launch. A breach stops the test whatever the primary result.
+- **Segments:** pre-registered segments are read with CIs and without a ship decision. Treat them as hypotheses for the next test.
+- **Peeking:** the decision is made only at the planned sample and runtime. Interim looks cover SRM and guardrails only.
+
+## Pre-launch checklist
+
+- [ ] Baseline for the primary metric from day 0 of the validation plan (not from this repo)
+- [ ] MDE agreed as the smallest effect worth shipping; sample and runtime from the calculator
+- [ ] Guardrail breach thresholds written down
+- [ ] Events verified in staging against `validateEvent()`, and parity checked in an A/A or the first 48h
+- [ ] Setup copy frozen or versioned for the test window (E8)
 
 ## Threats to validity
 

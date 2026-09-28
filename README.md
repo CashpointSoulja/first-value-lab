@@ -21,6 +21,7 @@ First Value Lab prototypes one testable answer: a **transparent first-value prev
 
 ## What's in the site
 
+- **Before/after**: a seven-scene decision walkthrough of the first session in both arms, with the reason for each interface choice. It has Play/Pause, keyboard steps, reduced-motion support and a full text version.
 - **Overview**: the bet, plus every documented claim (`E1`–`E13`, linked to public sources) set apart from every assumption (`A1`–`A7`).
 - **Trial simulator**: five synthetic personas × two arms. The journeys are deterministic and scripted, and each step emits analytics events that are validated live against the taxonomy. The side-by-side table shows structural properties of each path, never rates.
 - **Event taxonomy**: 19 events, filterable, with a live validator and a JSON download. It rejects anything that looks like message content or personal data.
@@ -35,7 +36,10 @@ First Value Lab prototypes one testable answer: a **transparent first-value prev
 - [Event taxonomy](docs/EVENT_TAXONOMY.md)
 - [Experiment design](docs/EXPERIMENT_DESIGN.md)
 - [48–72h validation plan](docs/VALIDATION_48_72H.md)
-- [5-minute demo script](docs/DEMO_SCRIPT.md)
+- [Evidence and assumptions register](docs/EVIDENCE_AND_ASSUMPTIONS.md) (generated)
+- [Before/after walkthrough: rationale and storyboard](docs/ANIMATION_STORYBOARD.md) (generated)
+- [Walkthrough and demo script](docs/WALKTHROUGH.md)
+- [Design and brand notes](docs/DESIGN_AND_BRAND.md)
 
 ## Honesty rules this repo follows
 
@@ -54,6 +58,7 @@ npm install
 npm run dev        # wrangler dev → http://localhost:8787
 npm test           # vitest: engine, taxonomy, stats, docs, worker
 npm run typecheck  # tsc --noEmit
+npm run docs:generate  # regenerate the generated docs after engine changes
 ```
 
 ## Architecture
@@ -66,7 +71,9 @@ npm run typecheck  # tsc --noEmit
   - `taxonomy.js`: event definitions and `validateEvent()`
   - `experiment.js`: primary metric, guardrails and segments
   - `stats.js`: sample size, runtime, two-proportion test, SRM check and the decision rule
-- `public/app.js`: vanilla JS UI with hash routing. `public/style.css`: responsive layout, Figtree font (OFL).
+  - `storyboard.js`: the before/after scenes, shared by the animation, its text version and the storyboard doc
+- `public/app.js`: vanilla JS UI with hash routing. `public/style.css`: responsive layout using fyxer.com's public colour tokens and Poppins (OFL). See [design and brand notes](docs/DESIGN_AND_BRAND.md).
+- `scripts/*-doc.mjs`: generate the taxonomy, evidence and storyboard docs from the engine (`npm run docs:generate`). Tests fail if a doc drifts.
 
 ## Deploy
 

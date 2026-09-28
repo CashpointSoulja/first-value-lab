@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>First Value Lab · Independent concept by Ayo Ahmed; not affiliated with Fyxer.</title>
   <meta name="description" content="First Value Lab: a speculative growth-product prototype about recognising a trustworthy first draft after connecting an inbox. Independent concept by Ayo Ahmed; not affiliated with Fyxer. Synthetic data only." />
-  <meta name="theme-color" content="#14161a" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314161a'/%3E%3Cpath d='M9 17.5l4.5 4.5L23 11' fill='none' stroke='%23f2c14e' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
-  <link rel="preload" href="/vendor/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <meta name="theme-color" content="#1e1e1e" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231e1e1e'/%3E%3Cpath d='M9 17.5l4.5 4.5L23 11' fill='none' stroke='%23ecd541' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="preload" href="/vendor/poppins-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/vendor/poppins-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
@@ -15,7 +16,7 @@
   <div class="disclaimer" role="note" aria-label="Disclaimer" data-disclaimer>
     <div class="wrap dis-inner">
       <span class="dis-tag">Concept</span>
-      <p><strong>Independent concept by Ayo Ahmed; not affiliated with Fyxer.</strong> <span class="dis-more">Speculative prototype. Synthetic data only: no real OAuth, no email is read or sent, no backend AI, no Fyxer data or metrics.</span></p>
+      <p><strong>Independent concept by Ayo Ahmed; not affiliated with Fyxer.</strong> <span class="dis-syn">Synthetic data only.</span> <span class="dis-more">Speculative prototype: no real OAuth, no email is read or sent, no backend AI, no Fyxer data or metrics. Fyxer's logo identifies the subject and implies no endorsement.</span></p>
     </div>
   </div>
   <header class="top">
@@ -24,10 +25,15 @@
         <span class="logo" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M9 17.5l4.5 4.5L23 11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <span class="brand-text"><b>First Value Lab</b><small>Growth concept · synthetic</small></span>
       </a>
+      <div class="subject" data-subject>
+        <span class="subj-text"><span>Concept about</span><small>Not affiliated · no endorsement</small></span>
+        <img src="/brand/fyxer-wordmark-orange.webp" width="56" height="20" alt="Fyxer" />
+      </div>
       <nav class="tabs" aria-label="Sections">
         <a href="#overview" data-tab="overview">Overview</a>
-        <a href="#simulator" data-tab="simulator">Trial simulator</a>
-        <a href="#events" data-tab="events">Event taxonomy</a>
+        <a href="#story" data-tab="story">Before/after</a>
+        <a href="#simulator" data-tab="simulator">Simulator</a>
+        <a href="#events" data-tab="events">Events</a>
         <a href="#experiment" data-tab="experiment">Experiment</a>
         <a href="#validate" data-tab="validate">48–72h plan</a>
         <a href="#docs" data-tab="docs">Docs</a>
@@ -46,6 +52,7 @@
             <p class="lede">Fyxer's public docs describe what happens at connection: the 300 most recent emails are categorised, and drafts are written for emails in To do / To respond. This lab asks a narrower growth question: in the first session, does the user see that value, understand it, and act on it? It prototypes one testable answer: a transparent first-value preview with setup-readiness feedback.</p>
             <div class="cta-row">
               <a class="btn primary" href="#simulator">Open the trial simulator</a>
+              <a class="btn" href="#story">Watch the before/after</a>
               <a class="btn" href="#experiment">See the experiment design</a>
             </div>
             <p class="fine">Built by Devin (an AI agent) at Ayo's direction, for Ayo's review. Every name, thread and draft is invented.</p>
@@ -55,7 +62,7 @@
             <ol class="bet">
               <li><span>Documented</span>Connection triggers categorisation of the last 300 emails, and drafts are written for To do / To respond emails.</li>
               <li><span class="amber">Assumed</span>Some users don't notice, understand or trust that first draft in session one.</li>
-              <li><span class="teal">Tested</span>Showing what was sorted, the first draft and why it was written, plus what setup is holding drafts back, raises first drafts sent within 24h, without hurting trust guardrails.</li>
+              <li><span class="teal">Hypothesis, to test</span>Proposed experiment: show what was sorted, the first draft and why it was written, and what setup is holding drafts back. Then measure whether more users send a first draft within 24h, with trust guardrails holding. Nothing has been measured yet.</li>
             </ol>
           </div>
         </div>
@@ -81,6 +88,86 @@
     </section>
 
     <!-- SIMULATOR -->
+    <!-- BEFORE / AFTER -->
+    <section id="tab-story" class="tab" hidden>
+      <div class="wrap section">
+        <div class="page-head">
+          <p class="eyebrow">Before / after · design reasoning, not a result</p>
+          <h1>Why each interface choice is there</h1>
+          <p class="lede sm">A short walkthrough of one synthetic user's first session (Maya) in both arms. The system underneath is the same in both. Only what the user sees changes. No scene shows a measured outcome, because none exists.</p>
+        </div>
+        <div class="panel story" id="story" tabindex="-1">
+          <div class="story-bar">
+            <div class="story-controls">
+              <button class="btn sm" type="button" id="story-prev">Back</button>
+              <button class="btn sm primary" type="button" id="story-play" aria-pressed="false">Play</button>
+              <button class="btn sm" type="button" id="story-next">Next</button>
+            </div>
+            <ol class="story-dots" id="story-dots" aria-label="Scenes"></ol>
+            <label class="story-motion"><input type="checkbox" id="story-reduce" /> Reduce motion</label>
+          </div>
+          <div class="stage" id="stage" data-scene="0" aria-hidden="true">
+            <div class="pane before">
+              <p class="pane-label"><span class="chip neutral">Before</span> Control: documented setup flow</p>
+              <div class="st-el shown" data-el="b-next">
+                <div class="mock-card"><b>You're all set</b><p class="small muted" style="margin:4px 0 8px">Next: check your inbox and review your first drafts in Gmail.</p><span class="btn sm">Open Gmail</span></div>
+              </div>
+              <div class="st-el shown" data-el="b-inbox">
+                <div class="inbox">
+                  <div class="inbox-row"><span class="from">Leo Hart</span><span class="subj">Revised brand deck: Thursday?</span><span class="lbl to_do">1: to do</span></div>
+                  <div class="inbox-row"><span class="from">Aisha Rahman</span><span class="subj">Invoice #1042 query</span><span class="lbl to_do">1: to do</span></div>
+                  <div class="inbox-row"><span class="from">Figma</span><span class="subj">Weekly activity digest</span><span class="lbl notification">3: notification</span></div>
+                </div>
+                <p class="small muted st-q">A draft exists, but where is it, and why was it written?</p>
+              </div>
+            </div>
+            <div class="pane after">
+              <p class="pane-label"><span class="chip teal">After</span> Treatment: transparent first-value preview</p>
+              <p class="small muted st-wait">The arms diverge only after categorisation finishes.</p>
+              <div class="st-el" data-el="a-sorted">
+                <div class="mock-card"><b>What we sorted: your 300 most recent emails</b>
+                  <div class="st-counts"><span class="lbl to_do">To do 3</span><span class="lbl fyi">FYI 41</span><span class="lbl notification">Notification 118</span><span class="lbl follow_up">Follow up 7</span><span class="lbl">Marketing 131</span></div>
+                </div>
+              </div>
+              <div class="st-el" data-el="a-draft">
+                <div class="mock-card"><b>Your first draft · Re: Revised brand deck: Thursday?</b><pre class="draft">Hi Leo,
+
+Thursday works. I'll bring the revised deck with the two palette options we discussed. Would 2pm suit you?
+
+Best,
+Maya</pre></div>
+              </div>
+              <div class="st-el" data-el="a-why">
+                <div class="mock-card"><b>Why this draft</b><ul class="why"><li>4 messages in this thread</li><li>Your last 3 replies to Leo (tone: short, warm)</li><li>Mentions of 'palette options' earlier in the thread</li></ul></div>
+              </div>
+              <div class="st-el" data-el="a-where">
+                <div class="mock-card"><b>Where it lives</b><p class="small" style="margin:4px 0 0">In Gmail under Drafts, and on the email itself. Nothing is sent until you review it. Light edits teach your tone.</p></div>
+              </div>
+              <div class="st-el" data-el="a-ready">
+                <div class="mock-card"><b>Setup readiness</b><ul class="st-checks"><li><span class="chip ok">ok</span> Conversation view on</li><li><span class="chip ok">ok</span> Labels visible in Gmail</li><li><span class="chip ok">ok</span> Calendar connected</li><li><span class="chip amb">add</span> Tone and role</li></ul></div>
+              </div>
+              <div class="st-el" data-el="a-empty">
+                <div class="mock-card st-alt"><b>If nothing needs a reply</b><p class="small" style="margin:4px 0 0">"Nothing labelled To do in your last 300 emails. Ask in Chat, forward an email, or add a custom rule." No invented draft.</p></div>
+              </div>
+              <div class="st-el" data-el="a-test">
+                <div class="mock-card dark"><b>What would decide it</b><p class="small" style="margin:4px 0 0">Primary: first draft sent within 24h. Guardrails: heavy edits, discards, disconnects, support contacts, cancellations. No result is shown here because none exists.</p></div>
+              </div>
+            </div>
+            <div class="st-el shown sys" data-el="sys">
+              <b>Same in both arms</b><span>Last 300 emails categorised</span><span>Drafts written for To do / To respond</span><span>Nothing sent without review</span>
+            </div>
+            <p class="stage-dis">Independent concept by Ayo Ahmed; not affiliated with Fyxer. Synthetic data. Illustrative mock, not Fyxer's UI.</p>
+          </div>
+          <div class="story-caption" id="story-caption" aria-live="polite"></div>
+        </div>
+        <details class="panel story-text" id="story-text">
+          <summary>Text version: the full storyboard</summary>
+          <ol id="story-text-list"></ol>
+        </details>
+        <noscript><p class="panel">This walkthrough needs JavaScript. The same storyboard is in docs/ANIMATION_STORYBOARD.md in the repository.</p></noscript>
+      </div>
+    </section>
+
     <section id="tab-simulator" class="tab" hidden>
       <div class="wrap section">
         <div class="page-head">
@@ -167,7 +254,7 @@
         <div class="grid2">
           <article class="panel design">
             <h3>Hypothesis</h3>
-            <p>If newly connected trial users see what was sorted, their first draft with the context behind it, and what setup is holding drafts back, more of them will send a first draft within 24h, because they can find and judge it in the moment (A1, A2). Trust guardrails will not worsen.</p>
+            <p>If newly connected trial users see what was sorted, their first draft with the context behind it, and what setup is holding drafts back, we expect a higher share of them to send a first draft within 24h, because they can find and judge it in the moment (A1, A2), and we expect the trust guardrails to hold. This is a prediction for the test to confirm or reject, not an observed result.</p>
             <h3>Primary metric</h3>
             <p><b>First draft sent within 24h.</b> Numerator: exposed users with <code>draft_sent</code> where <code>is_first=true</code> within 24h of <code>integration_connected(email)</code>. Denominator: users with <code>experiment_exposed</code>.</p>
             <h3>Secondary</h3>
@@ -251,7 +338,8 @@
   <footer class="foot">
     <div class="wrap foot-inner">
       <p><strong>Independent concept by Ayo Ahmed; not affiliated with Fyxer.</strong> Speculative prototype for a conversation about the Principal Growth Product Manager role. Not Fyxer's product, UI or data, and no claim of internal access or measured lift. Public sources are linked where cited.</p>
-      <p class="muted">Synthetic data · no real OAuth · nothing is sent · no backend AI · MIT licensed</p>
+      <p class="muted">Synthetic data · no real OAuth · nothing is sent · no backend AI · MIT licensed (code only)</p>
+      <p class="muted small">Fyxer and the Fyxer logo are trademarks of their owner. They are used only to identify the product this concept is about, and imply no endorsement or partnership. Colours follow fyxer.com's public palette. Type is Poppins (SIL OFL). See the <a href="#docs/design-and-brand">design and brand notes</a>.</p>
     </div>
   </footer>
   <script type="module" src="/app.js"></script>

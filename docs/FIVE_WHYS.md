@@ -20,7 +20,16 @@ This is **not observed data**. It's the hypothesis that the 48–72h plan tests 
 
 ## Root cause (a hypothesis)
 
-At the moment of connection, the value (categorisation and drafts) is created in the email client, while the explanation of that value (why this draft, and what setup is limiting it) lives in help docs. If users don't bridge that gap alone, a first-session preview that puts both on one screen should help.
+At the moment of connection, the value (categorisation and drafts) is created in the email client, while the explanation of that value (why this draft, and what setup is limiting it) lives in help docs. If users don't bridge that gap alone, a first-session preview that puts both on one screen might help. That is the hypothesis the experiment tests, not a finding.
+
+## Competing explanations to rule out
+
+| If this is true instead | Then | How the plan checks it |
+|---|---|---|
+| Users see the draft but don't need to reply yet | Recognition is fine and the timing metric is the wrong target | Day 0: views vs sends; moderated sessions |
+| The draft quality, not its visibility, stops the send | A preview won't help; heavy-edit and discard guardrails would rise | Session task 3; heavy-edit guardrail |
+| Setup gaps are rare | Readiness feedback adds little; the preview has to carry the effect | Day 0: prevalence of each readiness state (A3) |
+| The live product already surfaces the first draft (E8) | Re-scope to improving that surface | Day 0 desk check |
 
 ## What this does **not** say
 
@@ -51,7 +60,7 @@ At the moment of connection, the value (categorisation and drafts) is created in
 | ID | Assumption | How to check |
 |---|---|---|
 | A1 | Some users don't view a first draft in session one, even when one exists | `draft_generated` without `draft_viewed` in 24h |
-| A2 | Seeing why a draft was written raises willingness to send | Moderated sessions, then the A/B test |
+| A2 | Seeing why a draft was written may raise willingness to send | Moderated sessions, then the A/B test |
 | A3 | Readiness gaps are common enough in week one to matter | Prevalence of each `readiness_check_evaluated` status, by provider |
 | A4 | First draft sent in 24h leads trial-to-paid | Historical cohort analysis (needs internal data) |
 | A5 | A one-screen preview adds little onboarding friction | Time to first `draft_viewed`; dismiss rate |

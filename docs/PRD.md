@@ -61,6 +61,44 @@ The control is the lab's rendering of the public checklist's next steps: check y
 | R8 | Works at mobile widths (Dan) | Should |
 | R9 | The copy avoids over-claiming accuracy. Light edits teach tone (E11) | Should |
 
+### User stories
+
+- As a new trial user who has just connected email, I want to see that Fyxer has done something useful, so I know setup worked.
+- As that user, I want to understand why a draft says what it says, so I can decide whether to trust and send it.
+- As that user, if drafts are missing or invisible, I want to know what's causing it and how to fix it in one step.
+- As a user with nothing to reply to, I want to be told so plainly, rather than wondering whether the product works.
+
+### UX states
+
+| State | Trigger | Shows |
+|---|---|---|
+| Preparing | Connected, categorisation still running | Progress copy only. No counts, no draft |
+| Draft ready | `to_do_count ≥ 1` and at least one draft exists | What we sorted, first draft, why this draft, where it lives, readiness |
+| Draft blocked | `to_do_count ≥ 1`, no draft, readiness gap (e.g. conversation view off) | What we sorted, the specific gap and its fix, and a note that drafts appear once it's fixed |
+| Labels hidden | Gmail labels hidden | What we sorted, where it went, and how to show labels |
+| Nothing to reply to | `to_do_count = 0` | Honest empty state plus documented manual routes (E12) |
+| Dismissed | User closes the preview | The inbox as in control. The preview can be reopened from setup |
+
+### Acceptance criteria
+
+- In the lab's deterministic journeys, categorisation and draft outputs are identical across arms for every persona (`test/engine.test.ts`: pre-exposure parity, drafts only on To do threads).
+- No treatment-only event fires in control. `validateEvent()` rejects it.
+- No event carries message content or names. The validator rejects it.
+- Sam's treatment path shows no draft. Tom's exposure happens on the same trial day in both arms.
+- Every view shows the disclaimer at 390 px and 1366 px widths.
+
+### Dependencies
+
+- Categorisation completion and draft availability signals (`initial_categorization_completed`, `draft_generated`).
+- Readiness signals: conversation view, label visibility, calendar connection and tone setup, evaluated at connection in both arms.
+- An experimentation service with per-user assignment at trial start.
+
+### Rollout (if the test ships)
+
+1. Validation first ([48–72h plan](VALIDATION_48_72H.md)), then run the A/B test as designed.
+2. Ship only under the pre-registered rule. Size any rollout claim to the CI lower bound.
+3. Ramp 10% → 50% → 100% with guardrails monitored at each step, and keep a holdback for one trial cycle to check persistence.
+
 ## 5. Success measures
 
 See [Experiment design](EXPERIMENT_DESIGN.md). The primary metric is first draft sent within 24h of connecting email. The guardrails are heavy-edit share, first-draft discards, disconnects within 72h, support contacts and trial cancellations.
@@ -76,6 +114,8 @@ See [Experiment design](EXPERIMENT_DESIGN.md). The primary metric is first draft
 | The live product already does something similar (E8) | Check the current flow before building (48–72h plan, day 0) |
 
 ## 7. Open questions
+
+- Does the effect, if any, come from the preview or from readiness feedback alone? The readiness segment gives a first read, and a 2×2 would separate them.
 
 - Does the first-session draft moment matter for conversion (A4)? This needs historical data Ayo doesn't have.
 - How common is each readiness gap at connection (A3)?

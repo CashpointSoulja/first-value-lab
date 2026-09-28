@@ -10,11 +10,15 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "vendor:marked": "mkdir -p public/vendor && cp node_modules/marked/lib/marked.esm.js public/vendor/marked.esm.js && cp node_modules/marked/LICENSE public/vendor/marked.LICENSE",
-    "docs:taxonomy": "node scripts/taxonomy-doc.mjs"
+    "docs:taxonomy": "node scripts/taxonomy-doc.mjs",
+    "docs:evidence": "node scripts/evidence-doc.mjs",
+    "docs:storyboard": "node scripts/storyboard-doc.mjs",
+    "docs:generate": "npm run docs:taxonomy && npm run docs:evidence && npm run docs:storyboard"
   },
   "license": "MIT",
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20260927.1",
+    "@fontsource/poppins": "5.2.7",
     "@types/node": "^26.6.3",
     "marked": "18.0.13",
     "typescript": "^7.0.2",
