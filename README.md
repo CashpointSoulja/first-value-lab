@@ -32,10 +32,13 @@ First Value Lab starts from the user's job: a time-poor founder needs to find th
 
 ## Documents
 
+Start with the [PRD](docs/PRD.md) and [experiment backlog](docs/EXPERIMENT_BACKLOG.md): the backlog orders the checks, cheap tests and stop/go gates; the experiment design gives the first A/B test in full.
+
 - [PRD](docs/PRD.md)
 - [5 Whys: evidence versus assumptions](docs/FIVE_WHYS.md)
 - [Event taxonomy](docs/EVENT_TAXONOMY.md)
 - [Experiment design](docs/EXPERIMENT_DESIGN.md)
+- [Experiment backlog: prioritized bets and decision gates](docs/EXPERIMENT_BACKLOG.md)
 - [48–72h validation plan](docs/VALIDATION_48_72H.md)
 - [Evidence and assumptions register](docs/EVIDENCE_AND_ASSUMPTIONS.md) (generated)
 - [Before/after walkthrough: rationale and storyboard](docs/ANIMATION_STORYBOARD.md) (generated)
