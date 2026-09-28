@@ -1,5 +1,7 @@
 # First Value Lab
 
+[Explore the live, synthetic First Value Lab](https://first-value-lab.ayomideahmedcp.workers.dev/) · [Read the experiment backlog](docs/EXPERIMENT_BACKLOG.md)
+
 > **Independent concept by Ayo Ahmed; not affiliated with Fyxer.**
 > A speculative growth-product prototype built for a conversation about Fyxer's Principal Growth Product Manager role. It is not Fyxer's product, UI, code or data. It makes no claim of internal access or measured lift. **Synthetic data only**: no real OAuth, no email is read or sent, no backend AI, no private metrics.
 
