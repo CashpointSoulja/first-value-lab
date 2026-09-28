@@ -16,18 +16,18 @@
   <div class="disclaimer" role="note" aria-label="Disclaimer" data-disclaimer>
     <div class="wrap dis-inner">
       <span class="dis-tag">Concept</span>
-      <p><strong>Independent concept by Ayo Ahmed; not affiliated with Fyxer.</strong> <span class="dis-syn">Synthetic data only.</span> <span class="dis-more">Speculative prototype: no real OAuth, no email is read or sent, no backend AI, no Fyxer data or metrics. Fyxer's logo identifies the subject and implies no endorsement.</span></p>
+      <p><strong>Independent concept by Ayo Ahmed; not affiliated with Fyxer.</strong> <span class="dis-syn">Synthetic data only.</span> <span class="dis-more">No real OAuth, email, backend AI or Fyxer data. The Fyxer logo only identifies the subject.</span></p>
     </div>
   </div>
   <header class="top">
     <div class="wrap top-inner">
-      <a class="brand" href="#overview" aria-label="First Value Lab home">
-        <span class="logo" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M9 17.5l4.5 4.5L23 11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span class="brand-text"><b>First Value Lab</b><small>Growth concept · synthetic</small></span>
-      </a>
-      <div class="subject" data-subject>
-        <span class="subj-text"><span>Concept about</span><small>Not affiliated · no endorsement</small></span>
-        <img src="/brand/fyxer-wordmark-orange.webp" width="56" height="20" alt="Fyxer" />
+      <div class="brand">
+        <p class="subject" data-subject>
+          <span class="subj-k">Concept about</span>
+          <img src="/brand/fyxer-wordmark-orange.webp" width="84" height="30" alt="Fyxer" />
+          <span class="subj-note">Independent · Not affiliated<span class="subj-long"> · No endorsement</span></span>
+        </p>
+        <a class="brand-title" href="#overview" aria-label="First Value Lab home">First Value Lab <small>A growth-product concept by Ayo Ahmed</small></a>
       </div>
       <nav class="tabs" aria-label="Sections">
         <a href="#overview" data-tab="overview">Overview</a>
@@ -45,35 +45,103 @@
     <!-- OVERVIEW -->
     <section id="tab-overview" class="tab" hidden>
       <div class="hero">
-        <div class="wrap hero-grid">
-          <div>
-            <p class="eyebrow">A growth question, not a product claim</p>
-            <h1>After someone connects their inbox, do they <em>recognise</em> a first draft they can trust?</h1>
-            <p class="lede">Fyxer's public docs describe what happens at connection: the 300 most recent emails are categorised, and drafts are written for emails in To do / To respond. This lab asks a narrower growth question: in the first session, does the user see that value, understand it, and act on it? It prototypes one testable answer: a transparent first-value preview with setup-readiness feedback.</p>
+        <div class="wrap hero-inner hero-grid">
+          <div class="hero-main">
+            <p class="eyebrow">The job · a founder's first inbox session after connecting</p>
+            <h1>Find the email that needs you. <em>Trust</em> the draft. Send.</h1>
+            <p class="lede">Fyxer already works inside Gmail and Outlook: it sorts the 300 most recent emails into To respond, FYI and lower categories, and writes drafts in the user's tone, which the user reviews, edits and sends. This lab asks whether a time-poor user finds and trusts that value in session one, and tests one inbox-native answer.</p>
             <div class="cta-row">
-              <a class="btn primary" href="#simulator">Open the trial simulator</a>
-              <a class="btn" href="#story">Watch the before/after</a>
-              <a class="btn" href="#experiment">See the experiment design</a>
+              <a class="btn primary lg" href="#story">Watch the before/after</a>
+              <a class="btn lg" href="#simulator">Try the trial simulator</a>
+              <a class="text-link" href="#overview/refs">Product UI sources <span aria-hidden="true">→</span></a>
             </div>
-            <p class="fine">Built by Devin (an AI agent) at Ayo's direction, for Ayo's review. Every name, thread and draft is invented.</p>
           </div>
-          <div class="hero-card" aria-label="The bet in one card">
-            <p class="card-kicker">The bet</p>
-            <ol class="bet">
-              <li><span>Documented</span>Connection triggers categorisation of the last 300 emails, and drafts are written for To do / To respond emails.</li>
-              <li><span class="amber">Assumed</span>Some users don't notice, understand or trust that first draft in session one.</li>
-              <li><span class="teal">Hypothesis, to test</span>Proposed experiment: show what was sorted, the first draft and why it was written, and what setup is holding drafts back. Then measure whether more users send a first draft within 24h, with trust guardrails holding. Nothing has been measured yet.</li>
-            </ol>
+          <figure class="hero-mock" aria-label="Recreated Gmail inbox with Fyxer labels and a draft">
+            <div class="gm">
+              <div class="gm-top"><span class="gm-search">Search mail</span></div>
+              <div class="gm-list">
+                <div class="gm-row unread"><span class="gm-from">Priya Shah, <em>Draft</em> 2</span><span class="gm-subj"><i class="lb l1">1: to respond</i><b>30 min next week on the pilot?</b></span><span class="gm-date">9:14</span></div>
+                <div class="gm-row unread"><span class="gm-from">Leo Hart, <em>Draft</em> 3</span><span class="gm-subj"><i class="lb l1">1: to respond</i><b>Deck sign-off by Thursday?</b></span><span class="gm-date">8:52</span></div>
+                <div class="gm-row"><span class="gm-from">Ben Ortiz</span><span class="gm-subj"><i class="lb l2">2: FYI</i>Board pack v3</span><span class="gm-date">Yest.</span></div>
+                <div class="gm-row"><span class="gm-from">Stripe</span><span class="gm-subj"><i class="lb l4">4: notification</i>Weekly payout summary</span><span class="gm-date">Yest.</span></div>
+              </div>
+              <div class="gt-reply sm"><p class="gt-draftk">Draft in Priya's thread · you edit and send</p><p class="small" style="margin:0">Hi Priya, happy to. I can do Tuesday 2:00–3:30pm or Wednesday 3:00–5:00pm…</p><div class="gt-tools"><span class="gt-send">Send</span></div></div>
+            </div>
+            <figcaption>Recreated from Fyxer's public product guide (R1, R2). Synthetic content. Not a screenshot of Fyxer or Gmail.</figcaption>
+          </figure>
+          <section class="layers" aria-label="Four separate layers">
+            <div class="layer"><span class="layer-k">Product value · documented</span><p>Urgent threads labelled 1: to respond, drafts from the thread in the user's tone, human edit and send, calendar-checked times (E14, E15, E10, E19).</p></div>
+            <div class="layer amb"><span class="layer-k">Growth hypothesis · to test</span><p>Some busy users don't find or trust that first draft in session one (A8, A1, A2). Naming the threads in Fyxer's existing welcome email might help. Nothing has been measured.</p></div>
+            <div class="layer"><span class="layer-k">Instrumentation</span><p>Primary: first Fyxer draft sent within 24h of email connection, among exposed new trials. Trial-to-paid is a downstream read (A4).</p></div>
+            <div class="layer"><span class="layer-k">Trust guardrails</span><p>Heavy-edit share, first-draft discards, email disconnects within 72h, support contacts by day 3, trial cancellations.</p></div>
+          </section>
+          <p class="fine">Built by Devin (an AI agent) at Ayo's direction, for Ayo's review. Every name, thread and draft is invented.</p>
+        </div>
+      </div>
+      <div class="wrap section" id="value">
+        <div class="page-head">
+          <p class="eyebrow">Where this adds value</p>
+          <h2>A ready-to-run activation bet, and how I'd work in the role</h2>
+          <p class="lede sm">The value isn't a claimed uplift, because there isn't one. It's a way to decide faster, and more cheaply, whether one activation idea is worth building. It comes with the evidence, instrumentation and decision rules already worked out.</p>
+        </div>
+        <section class="chain panel" aria-labelledby="chain-h">
+          <div class="chain-head">
+            <h3 id="chain-h">The growth chain this tests</h3>
+            <span class="chip amb">Hypothesis, not a measured Fyxer bottleneck</span>
           </div>
+          <ol class="chain-steps">
+            <li><span class="chain-k">Documented</span><b>Email connected</b><small>Last 300 emails sorted, drafts written (E1, E2)</small></li>
+            <li><span class="chain-k amb">Assumed</span><b>Recognises a trustworthy first draft</b><small>In session one (A1, A2)</small></li>
+            <li class="primary"><span class="chain-k">Primary metric</span><b>First Fyxer draft sent within 24h</b><small>Of email connection, among exposed new trials</small></li>
+            <li><span class="chain-k amb">Assumed</span><b>Keeps using it during the 7-day trial</b><small>Trial length from E7</small></li>
+            <li class="secondary"><span class="chain-k">Secondary, downstream</span><b>Trial-to-paid</b><small>Read, not the decision metric at this sample (A4)</small></li>
+          </ol>
+          <p class="chain-guard"><b>Trust guardrails, which must hold:</b> heavy-edit share, first-draft discards, email disconnects within 72h, support contacts by day 3, trial cancellations.</p>
+        </section>
+        <div class="grid3 value-grid">
+          <article class="panel value">
+            <p class="label">1 · Why validate before shipping</p>
+            <h3>A 7-day trial leaves little room to miss day one</h3>
+            <p>A user who connects and doesn't recognise a useful draft has already used part of a short trial (E7). That makes the first 24h the earliest point where a change can be seen and measured. Trial-to-paid comes too late and is too sparse to decide on at a realistic sample (A4). The preview also shows why a draft was written, which can build trust or backfire, so it ships only if the guardrails hold. The 48–72h checks come first, to confirm the problem is real (A1, A3) before any build.</p>
+          </article>
+          <article class="panel value">
+            <p class="label">2 · What it hands a growth team</p>
+            <h3>Spec, events, test and kill rules</h3>
+            <ul class="value-list">
+              <li><a href="#docs/prd">PRD</a> for a one-screen preview. It changes no model or pipeline behaviour.</li>
+              <li><a href="#events">Privacy-safe event taxonomy</a> with a payload validator</li>
+              <li><a href="#experiment">A/B design</a>: primary metric, guardrails, segments, power and runtime, pre-registered ship/stop rules</li>
+              <li><a href="#validate">48–72h validation</a> to check the problem is real before any build</li>
+            </ul>
+          </article>
+          <article class="panel value">
+            <p class="label">3 · Fit with the role</p>
+            <h3>The posting's toolkit, applied once</h3>
+            <p class="small muted" style="margin:0 0 8px">The posting asks for interviews, prototypes, experiments, product analytics, fake doors, usability testing and behavioural analysis (E13).</p>
+            <ul class="value-list map">
+              <li><b>Prototype</b><span><a href="#simulator">Trial simulator</a>, five personas</span></li>
+              <li><b>Fake door + usability</b><span><a href="#validate">48–72h plan</a></span></li>
+              <li><b>Experiment</b><span><a href="#experiment">Pre-registered A/B</a></span></li>
+              <li><b>Analytics</b><span><a href="#events">Events</a> and segments</span></li>
+              <li><b>Judgement</b><span><a href="#story">Why each choice</a>, evidence vs assumptions</span></li>
+            </ul>
+          </article>
         </div>
       </div>
       <div class="wrap section">
         <h2>What changes, and what doesn't</h2>
         <div class="grid3">
           <article class="panel"><h3>System behaviour</h3><p><b>Unchanged in both arms.</b> Same categorisation and the same drafts. The treatment doesn't make drafting faster or better, and it doesn't fix a behaviour the product already has.</p></article>
-          <article class="panel"><h3>What the user sees</h3><p><b>Control:</b> the public checklist's next steps, which are to check your inbox and review drafts in Gmail or Outlook. <b>Treatment:</b> an in-product preview of what was sorted, the first draft with 'why this draft', where it lives, and a readiness list.</p></article>
+          <article class="panel"><h3>What the user sees</h3><p><b>Control:</b> Gmail or Outlook as documented, with Fyxer's labels, drafts in the thread, and Fyxer's generic welcome email. <b>Treatment:</b> that same welcome email names the To respond threads that already have drafts, why each needs a reply, calendar and setup readiness, and links into each thread. No new surface.</p></article>
           <article class="panel"><h3>What we measure</h3><p><b>Primary:</b> share of exposed trial users who send a first Fyxer draft within 24h of connecting email. <b>Guardrails:</b> heavy-edit share, first-draft discards, disconnects, support contacts and trial cancellations.</p></article>
         </div>
+      </div>
+      <div class="wrap section" id="refs">
+        <div class="split-head">
+          <h2>Product UI sources</h2>
+          <p class="muted">The mocks recreate Fyxer's real Gmail workflow from these first-party screenshots and product-guide videos. No image is copied into the lab.</p>
+        </div>
+        <ul class="panel refs" id="ref-list"></ul>
       </div>
       <div class="wrap section">
         <div class="split-head">
@@ -94,71 +162,97 @@
         <div class="page-head">
           <p class="eyebrow">Before / after · design reasoning, not a result</p>
           <h1>Why each interface choice is there</h1>
-          <p class="lede sm">A short walkthrough of one synthetic user's first session (Maya) in both arms. The system underneath is the same in both. Only what the user sees changes. No scene shows a measured outcome, because none exists.</p>
+          <p class="lede sm">A short walkthrough of one synthetic founder's first inbox session (Maya) in both arms, recreated in Gmail from Fyxer's public product guide. The system underneath is the same in both. Only what the user sees changes. No scene shows a measured outcome, because none exists.</p>
         </div>
         <div class="panel story" id="story" tabindex="-1">
           <div class="story-bar">
+            <ol class="story-dots" id="story-dots" aria-label="Scenes"></ol>
             <div class="story-controls">
               <button class="btn sm" type="button" id="story-prev">Back</button>
               <button class="btn sm primary" type="button" id="story-play" aria-pressed="false">Play</button>
               <button class="btn sm" type="button" id="story-next">Next</button>
+              <label class="story-motion"><input type="checkbox" id="story-reduce" /> Reduce motion</label>
             </div>
-            <ol class="story-dots" id="story-dots" aria-label="Scenes"></ol>
-            <label class="story-motion"><input type="checkbox" id="story-reduce" /> Reduce motion</label>
           </div>
+          <div class="story-caption" id="story-caption" aria-live="polite"></div>
           <div class="stage" id="stage" data-scene="0" aria-hidden="true">
             <div class="pane before">
-              <p class="pane-label"><span class="chip neutral">Before</span> Control: documented setup flow</p>
-              <div class="st-el shown" data-el="b-next">
-                <div class="mock-card"><b>You're all set</b><p class="small muted" style="margin:4px 0 8px">Next: check your inbox and review your first drafts in Gmail.</p><span class="btn sm">Open Gmail</span></div>
-              </div>
-              <div class="st-el shown" data-el="b-inbox">
-                <div class="inbox">
-                  <div class="inbox-row"><span class="from">Leo Hart</span><span class="subj">Revised brand deck: Thursday?</span><span class="lbl to_do">1: to do</span></div>
-                  <div class="inbox-row"><span class="from">Aisha Rahman</span><span class="subj">Invoice #1042 query</span><span class="lbl to_do">1: to do</span></div>
-                  <div class="inbox-row"><span class="from">Figma</span><span class="subj">Weekly activity digest</span><span class="lbl notification">3: notification</span></div>
-                </div>
-                <p class="small muted st-q">A draft exists, but where is it, and why was it written?</p>
+              <p class="pane-label"><span class="chip neutral">Before</span> Control: Gmail as documented</p>
+              <p class="pane-now" data-now="before"></p>
+              <div class="gm st-el shown" data-el="b-inbox">
+                <div class="gm-top"><span class="gm-search">Search mail</span></div>
+                <div class="gm-body"><ul class="gm-labels" aria-hidden="true"><li class="gm-sel">Inbox <b>312</b></li><li>Drafts <b>3</b></li><li class="gm-lh">Labels</li><li><i class="dot l1"></i>1: to respond <b>3</b></li><li><i class="dot l2"></i>2: FYI <b>41</b></li><li><i class="dot l3"></i>3: comment</li><li><i class="dot l4"></i>4: notification <b>118</b></li><li><i class="dot l5"></i>5: meeting update</li><li><i class="dot l6"></i>6: awaiting reply</li><li><i class="dot l7"></i>7: actioned</li><li><i class="dot l8"></i>8: marketing <b>131</b></li></ul><div class="gm-list">
+                  <div class="gm-row unread"><span class="gm-from">Priya Shah, <em>Draft</em> 2</span><span class="gm-subj"><i class="lb l1">1: to respond</i><b>30 min next week on the pilot?</b><span class="gm-snip"> – Tuesday or Wednesday afternoon would suit me</span></span><span class="gm-date">9:14</span></div>
+                  <div class="gm-row unread"><span class="gm-from">Leo Hart, <em>Draft</em> 3</span><span class="gm-subj"><i class="lb l1">1: to respond</i><b>Deck sign-off by Thursday?</b><span class="gm-snip"> – Two palette options attached</span></span><span class="gm-date">8:52</span></div>
+                  <div class="gm-row unread"><span class="gm-from">Aisha Rahman, <em>Draft</em></span><span class="gm-subj"><i class="lb l1">1: to respond</i><b>Invoice #1042 query</b><span class="gm-snip"> – The PO number doesn't match</span></span><span class="gm-date">8:10</span></div>
+                  <div class="gm-row st-el shown" data-el="b-welcome"><span class="gm-from">Fyxer AI</span><span class="gm-subj"><i class="lb l2">2: FYI</i>You've connected your email<span class="gm-snip"> – Here's what to expect</span></span><span class="gm-date">7:58</span></div>
+                  <div class="gm-row"><span class="gm-from">Ben Ortiz</span><span class="gm-subj"><i class="lb l2">2: FYI</i>Board pack v3<span class="gm-snip"> – No action needed before Monday</span></span><span class="gm-date">Yesterday</span></div>
+                  <div class="gm-row"><span class="gm-from">Stripe</span><span class="gm-subj"><i class="lb l4">4: notification</i>Your weekly payout summary</span><span class="gm-date">Yesterday</span></div>
+                  <div class="gm-row"><span class="gm-from">Figma</span><span class="gm-subj"><i class="lb l8">8: marketing</i>What's new this month</span><span class="gm-date">Mon</span></div>
+                </div></div>
               </div>
             </div>
             <div class="pane after">
-              <p class="pane-label"><span class="chip teal">After</span> Treatment: transparent first-value preview</p>
+              <p class="pane-label"><span class="chip teal">After</span> Treatment: the welcome email, made specific</p>
+              <p class="pane-now" data-now="after"></p>
+              <div class="gm st-el shown" data-el="t-inbox">
+                <div class="gm-top"><span class="gm-search">Search mail</span></div>
+                <div class="gm-body"><ul class="gm-labels" aria-hidden="true"><li class="gm-sel">Inbox <b>312</b></li><li>Drafts <b>3</b></li><li class="gm-lh">Labels</li><li><i class="dot l1"></i>1: to respond <b>3</b></li><li><i class="dot l2"></i>2: FYI <b>41</b></li><li><i class="dot l3"></i>3: comment</li><li><i class="dot l4"></i>4: notification <b>118</b></li><li><i class="dot l5"></i>5: meeting update</li><li><i class="dot l6"></i>6: awaiting reply</li><li><i class="dot l7"></i>7: actioned</li><li><i class="dot l8"></i>8: marketing <b>131</b></li></ul><div class="gm-list">
+                  <div class="gm-row unread"><span class="gm-from">Priya Shah, <em>Draft</em> 2</span><span class="gm-subj"><i class="lb l1">1: to respond</i><b>30 min next week on the pilot?</b><span class="gm-snip"> – Tuesday or Wednesday afternoon would suit me</span></span><span class="gm-date">9:14</span></div>
+                  <div class="gm-row unread"><span class="gm-from">Leo Hart, <em>Draft</em> 3</span><span class="gm-subj"><i class="lb l1">1: to respond</i><b>Deck sign-off by Thursday?</b><span class="gm-snip"> – Two palette options attached</span></span><span class="gm-date">8:52</span></div>
+                  <div class="gm-row unread"><span class="gm-from">Aisha Rahman, <em>Draft</em></span><span class="gm-subj"><i class="lb l1">1: to respond</i><b>Invoice #1042 query</b><span class="gm-snip"> – The PO number doesn't match</span></span><span class="gm-date">8:10</span></div>
+                  <div class="gm-row gm-welcome"><span class="gm-from">Fyxer AI</span><span class="gm-subj"><i class="lb l2">2: FYI</i><span class="w-ctl">You've connected your email<span class="gm-snip"> – Here's what to expect</span></span><span class="w-trt"><b>You've connected your email</b><span class="gm-snip"> – 3 emails need you, each has a draft</span></span></span><span class="gm-date">7:58</span></div>
+                  <div class="gm-row"><span class="gm-from">Ben Ortiz</span><span class="gm-subj"><i class="lb l2">2: FYI</i>Board pack v3<span class="gm-snip"> – No action needed before Monday</span></span><span class="gm-date">Yesterday</span></div>
+                  <div class="gm-row"><span class="gm-from">Stripe</span><span class="gm-subj"><i class="lb l4">4: notification</i>Your weekly payout summary</span><span class="gm-date">Yesterday</span></div>
+                  <div class="gm-row"><span class="gm-from">Figma</span><span class="gm-subj"><i class="lb l8">8: marketing</i>What's new this month</span><span class="gm-date">Mon</span></div>
+                </div></div>
+              </div>
               <p class="small muted st-wait">The arms diverge only after categorisation finishes.</p>
-              <div class="st-el" data-el="a-sorted">
-                <div class="mock-card"><b>What we sorted: your 300 most recent emails</b>
-                  <div class="st-counts"><span class="lbl to_do">To do 3</span><span class="lbl fyi">FYI 41</span><span class="lbl notification">Notification 118</span><span class="lbl follow_up">Follow up 7</span><span class="lbl">Marketing 131</span></div>
+              <div class="gm-open">
+                <div class="st-el" data-el="a-start">
+                  <div class="mock-card"><b>Start here: 3 emails need a reply. Each already has a draft.</b>
+                    <p class="small muted" style="margin:2px 0 6px">From your 300 most recent emails: <i class="lb l1">1: to respond 3</i> <i class="lb l2">2: FYI 41</i> <i class="lb l4">4: notification 118</i> <i class="lb l8">8: marketing 131</i></p>
+                    <ol class="start-list"><li><b>Priya Shah</b> · 30 min next week on the pilot? <span class="lnk">Open thread</span></li><li><b>Leo Hart</b> · Deck sign-off by Thursday? <span class="lnk">Open thread</span></li><li><b>Aisha Rahman</b> · Invoice #1042 query <span class="lnk">Open thread</span></li></ol>
+                  </div>
+                </div>
+                <div class="st-el" data-el="a-why">
+                  <div class="mock-card"><b>Why each needs you, and what the draft used</b><ul class="why"><li><b>Priya</b> asks for a time. Draft uses this thread and your calendar.</li><li><b>Leo</b> needs sign-off by Thursday. Draft uses the 3-message thread.</li><li><b>Aisha</b> queries an invoice. Draft uses the thread; check the PO number.</li></ul><p class="small" style="margin:6px 0 0">You edit and send each one in Gmail. Light edits teach your tone.</p></div>
+                </div>
+                <div class="st-el" data-el="a-sched">
+                  <div class="mock-card"><b>Scheduling: check the times</b><p class="small" style="margin:4px 0 0">Calendar connected, so Priya's draft offers your free times. Only your availability is checked, not other attendees'.</p></div>
+                </div>
+                <div class="st-el" data-el="a-ready">
+                  <div class="mock-card"><b>Setup readiness</b><ul class="st-checks"><li><span class="chip ok">ok</span> Conversation view on</li><li><span class="chip ok">ok</span> Labels shown in Gmail</li><li><span class="chip ok">ok</span> Calendar connected</li><li><span class="chip amb">add</span> Tone guidance in Dashboard → Drafts</li></ul></div>
+                </div>
+                <div class="st-el" data-el="a-empty">
+                  <div class="mock-card st-alt"><b>If nothing needs a reply yet</b><p class="small" style="margin:4px 0 0">"Nothing in your last 300 emails needs a reply, so there are no drafts yet. They'll appear as emails that need you come in. Or ask Chat, forward an email, or add a rule." No invented draft.</p></div>
+                </div>
+                <div class="st-el" data-el="a-test">
+                  <div class="mock-card dark"><b>What would decide it</b><p class="small" style="margin:4px 0 0">Primary: first Fyxer draft sent within 24h of connecting email. Guardrails: heavy edits, discards, disconnects, support contacts, cancellations. No result is shown here because none exists.</p></div>
                 </div>
               </div>
-              <div class="st-el" data-el="a-draft">
-                <div class="mock-card"><b>Your first draft · Re: Revised brand deck: Thursday?</b><pre class="draft">Hi Leo,
+            </div>
+            <div class="st-el shown sys gm-thread" data-el="sys">
+              <p class="sys-k"><span class="chip neutral">Same in both arms</span> Opening the thread in Gmail · recreated from R2</p>
+              <div class="gt-head"><b>30 min next week on the pilot?</b> <i class="lb">Inbox</i> <i class="lb l1">1: to respond</i></div>
+              <div class="gt-msg"><span class="av">P</span><div><p class="gt-from"><b>Priya Shah</b> to me</p><p>Hi Maya, could we find 30 minutes next week to walk through the pilot results? Tuesday or Wednesday afternoon would suit me. Priya</p></div></div>
+              <div class="gt-reply"><p class="gt-draftk">Draft · written by Fyxer from this thread · you edit and send</p>
+<pre class="draft">Hi Priya,
 
-Thursday works. I'll bring the revised deck with the two palette options we discussed. Would 2pm suit you?
+Happy to. I can do:
+• Tuesday, 2:00–3:30pm
+• Wednesday, 3:00–5:00pm
+
+Let me know what works, or use my scheduling link.
 
 Best,
-Maya</pre></div>
+Maya</pre>
+                <div class="gt-tools"><span class="gt-send">Send</span><span class="small muted">Nothing sends until you press it</span></div>
               </div>
-              <div class="st-el" data-el="a-why">
-                <div class="mock-card"><b>Why this draft</b><ul class="why"><li>4 messages in this thread</li><li>Your last 3 replies to Leo (tone: short, warm)</li><li>Mentions of 'palette options' earlier in the thread</li></ul></div>
-              </div>
-              <div class="st-el" data-el="a-where">
-                <div class="mock-card"><b>Where it lives</b><p class="small" style="margin:4px 0 0">In Gmail under Drafts, and on the email itself. Nothing is sent until you review it. Light edits teach your tone.</p></div>
-              </div>
-              <div class="st-el" data-el="a-ready">
-                <div class="mock-card"><b>Setup readiness</b><ul class="st-checks"><li><span class="chip ok">ok</span> Conversation view on</li><li><span class="chip ok">ok</span> Labels visible in Gmail</li><li><span class="chip ok">ok</span> Calendar connected</li><li><span class="chip amb">add</span> Tone and role</li></ul></div>
-              </div>
-              <div class="st-el" data-el="a-empty">
-                <div class="mock-card st-alt"><b>If nothing needs a reply</b><p class="small" style="margin:4px 0 0">"Nothing labelled To do in your last 300 emails. Ask in Chat, forward an email, or add a custom rule." No invented draft.</p></div>
-              </div>
-              <div class="st-el" data-el="a-test">
-                <div class="mock-card dark"><b>What would decide it</b><p class="small" style="margin:4px 0 0">Primary: first draft sent within 24h. Guardrails: heavy edits, discards, disconnects, support contacts, cancellations. No result is shown here because none exists.</p></div>
-              </div>
+              <div class="gt-msg gt-note"><span class="av f">F</span><div><p class="gt-from"><b>Fyxer AI</b> note in the thread</p><p>Priya asked for Tuesday or Wednesday afternoon. Looking at your calendar, you're free: Tue 2:00–3:30pm, Wed 3:00–5:00pm.</p></div></div>
             </div>
-            <div class="st-el shown sys" data-el="sys">
-              <b>Same in both arms</b><span>Last 300 emails categorised</span><span>Drafts written for To do / To respond</span><span>Nothing sent without review</span>
-            </div>
-            <p class="stage-dis">Independent concept by Ayo Ahmed; not affiliated with Fyxer. Synthetic data. Illustrative mock, not Fyxer's UI.</p>
+            <p class="stage-dis">Independent concept by Ayo Ahmed; not affiliated with Fyxer. Synthetic data. Recreated from Fyxer's public product guide (R1, R2, R4); not a screenshot of Fyxer or Gmail.</p>
           </div>
-          <div class="story-caption" id="story-caption" aria-live="polite"></div>
         </div>
         <details class="panel story-text" id="story-text">
           <summary>Text version: the full storyboard</summary>

@@ -11,18 +11,19 @@ So the growth question here is **not** "how do we get a draft generated sooner?"
 
 > **After connecting, do new trial users recognise a first draft they can trust, and act on it in the first session?**
 
-First Value Lab prototypes one testable answer: a **transparent first-value preview** plus **setup-readiness feedback**. Everything the system does stays the same in both arms. Only what the user sees changes.
+First Value Lab starts from the user's job: a time-poor founder needs to find the thread that needs them, trust a draft in their own tone, verify scheduling times against the calendar, edit and send, without leaving Gmail or Outlook. It prototypes one testable answer: **Fyxer's existing welcome email, made specific** (the threads that already have drafts, why each needs a reply, and setup readiness). The mocks recreate Fyxer's real Gmail workflow from first-party screenshots and product-guide videos (R1–R9 in `docs/EVIDENCE_AND_ASSUMPTIONS.md`). Everything the system does stays the same in both arms. Only what the user sees changes.
 
-| | Control: documented setup flow | Treatment: transparent first-value preview |
+| | Control: Gmail/Outlook as documented | Treatment: specific start-here welcome email |
 |---|---|---|
 | Categorisation of the last 300 emails | Same | Same |
 | Drafts for To do / To respond emails | Same | Same |
-| After connecting, the user sees | The checklist's next steps: check your inbox, review drafts in Gmail/Outlook | What was sorted, the first draft with **Why this draft** (the context used), where it lives, and a readiness list (conversation view, label visibility, calendar, tone) |
+| Thread, draft, Send, Fyxer's calendar note | Same | Same |
+| After connecting, the user sees | Labelled inbox, drafts in threads, Fyxer's generic welcome email | The same welcome email naming the To respond threads that already have drafts, why each needs a reply, calendar and readiness notes (conversation view, label visibility, calendar, tone), each linking into the thread |
 
 ## What's in the site
 
-- **Before/after**: a seven-scene decision walkthrough of the first session in both arms, with the reason for each interface choice. It has Play/Pause, keyboard steps, reduced-motion support and a full text version.
-- **Overview**: the bet, plus every documented claim (`E1`–`E13`, linked to public sources) set apart from every assumption (`A1`–`A7`).
+- **Before/after**: a nine-scene decision walkthrough of a founder's first inbox session in both arms, recreated in Gmail, with the reason for each interface choice. It has Play/Pause, keyboard steps, reduced-motion support and a full text version.
+- **Overview**: the bet, plus the four layers kept separate (product value, growth hypothesis, instrumentation, guardrails), the first-party product UI sources (`R1`–`R9`), and every documented claim (`E1`–`E21`) set apart from every assumption (`A1`–`A8`).
 - **Trial simulator**: five synthetic personas × two arms. The journeys are deterministic and scripted, and each step emits analytics events that are validated live against the taxonomy. The side-by-side table shows structural properties of each path, never rates.
 - **Event taxonomy**: 19 events, filterable, with a live validator and a JSON download. It rejects anything that looks like message content or personal data.
 - **Experiment**: hypothesis, primary metric, guardrails, segmentation and decision rules. Also a sample-size and runtime calculator and a decision sandbox. Both use only numbers you type in. The "rule check" buttons fill in made-up inputs, one per decision branch.

@@ -1,6 +1,6 @@
 // Generates docs/EVIDENCE_AND_ASSUMPTIONS.md from public/engine/evidence.js so the doc cannot drift.
 import { writeFileSync } from "node:fs";
-import { EVIDENCE, ASSUMPTIONS, SOURCES } from "../public/engine/evidence.js";
+import { EVIDENCE, ASSUMPTIONS, SOURCES, UI_REFERENCES } from "../public/engine/evidence.js";
 
 const cell = (s) => String(s).replace(/\|/g, "\\|");
 
@@ -17,6 +17,14 @@ export function renderEvidenceDoc() {
     "| ID | Claim | Supporting quote | Source |",
     "|---|---|---|---|",
     ...EVIDENCE.map((e) => `| ${e.id} | ${cell(e.claim)} | "${cell(e.quote)}" | [${new URL(SOURCES[e.source]).hostname}${new URL(SOURCES[e.source]).pathname}](${SOURCES[e.source]}) |`),
+    "",
+    "## Product UI references (first-party screenshots and video frames)",
+    "",
+    "The lab's mocks recreate Fyxer's real Gmail workflow from these references. None of the images is copied into the repository; each is linked, with what the frame shows. Retrieved 28 Sep 2026.",
+    "",
+    "| ID | Kind | Where | What it shows | URL |",
+    "|---|---|---|---|---|",
+    ...UI_REFERENCES.map((r) => `| ${r.id} | ${cell(r.kind)} | ${cell(r.where)} | ${cell(r.shows)} | ${r.url} |`),
     "",
     "## Assumptions (to test)",
     "",

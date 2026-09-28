@@ -26,8 +26,22 @@ The lab is a conversation piece about Fyxer's onboarding, so a reviewer should b
 | Headline type | **Poppins 600**, not f37Hybrid | f37Hybrid is a commercial typeface licensed to Fyxer. Copying it would need a licence, so the lab uses Poppins 600 with tighter tracking instead |
 | Emphasis | Orange (`#ff5a39`) words inside dark-navy headlines, as on the homepage | Recognisable, low-cost cue |
 | Buttons | `#1e1e1e`, radius 8 px, Poppins 600 | Matches the observed CTAs |
-| Logo | The Fyxer wordmark appears **once**, in the header, framed as "Concept about [Fyxer] · Not affiliated · no endorsement". It sits beside the lab's own mark (a check in a dark square), not in place of it. A 320 px copy is served from `public/brand/` | Identifies the subject without looking like Fyxer's own branding. It isn't in the favicon, the mocks or the title |
-| Mock screens | Labelled "Illustrative mock, not Fyxer's UI", with the disclaimer inside the frame | Stops screenshots being taken out of context |
+| Logo | The Fyxer wordmark appears **once**, top-left in the header, as a labelled subject: "Concept about [Fyxer] · Independent · Not affiliated · No endorsement". "First Value Lab" sits directly below as the concept title, and the navigation sits on the right. A 320 px copy is served from `public/brand/` | One clear hierarchy: the subject is named first and the concept title follows, so the page can't be mistaken for Fyxer's own. The logo isn't in the favicon, the mocks or the page title |
+| Mock screens | Recreations of Fyxer's real Gmail workflow (see below), each captioned "Recreated from Fyxer's public product guide … not a screenshot of Fyxer or Gmail", with the disclaimer inside the frame | Grounds the concept in the actual product, and stops screenshots being taken out of context |
+
+## Product UI, not just brand (first-party references)
+
+The before/after stage and the hero mock recreate what Fyxer's own screenshots and product-guide videos show (full list with URLs and frame descriptions: R1–R9 in the [evidence register](EVIDENCE_AND_ASSUMPTIONS.md)). No image is copied into the repository.
+
+| Observed in the real product | Where | How the lab renders it |
+|---|---|---|
+| Fyxer works inside Gmail; the inbox, sidebar and search stay Gmail's | R1, R4, R5 | Gmail-like chrome: pale blue-grey sidebar, pill search, white unread rows |
+| Numbered, colour-coded labels as chips before the subject | R1, R5, R6 | `.lb.l1`–`.lb.l8`, colours sampled from the video frames (e.g. 1: to respond `#ed9286`, 2: FYI `#ffb061`, 4: notification `#53d99c`) |
+| Red "Draft" marker in the sender column | R1, R5 | `.gm-from em` in Gmail red |
+| Draft sits in Gmail's reply box inside the thread; Gmail's blue Send | R2 | Shared thread with the draft and a Send the user presses |
+| Fyxer AI note in the thread listing free calendar times | R2 | Shown in both arms, so the treatment doesn't claim it |
+| "You've connected your email" onboarding message in the inbox | R1 | The treatment's only surface |
+| Dashboard: left nav, parchment card headers, orange actions | R3, R8 | Used only as the source of setup fixes; not the day-to-day surface |
 
 ## Disclaimer placement (every view)
 
