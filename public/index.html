@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>First Value Lab · Independent concept by Ayo Ahmed; not affiliated with Fyxer.</title>
+  <meta name="description" content="First Value Lab: a speculative growth-product prototype about recognising a trustworthy first draft after connecting an inbox. Independent concept by Ayo Ahmed; not affiliated with Fyxer. Synthetic data only." />
+  <meta name="theme-color" content="#14161a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314161a'/%3E%3Cpath d='M9 17.5l4.5 4.5L23 11' fill='none' stroke='%23f2c14e' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="preload" href="/vendor/figtree-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="disclaimer" role="note" aria-label="Disclaimer" data-disclaimer>
+    <div class="wrap dis-inner">
+      <span class="dis-tag">Concept</span>
+      <p><strong>Independent concept by Ayo Ahmed; not affiliated with Fyxer.</strong> <span class="dis-more">Speculative prototype. Synthetic data only: no real OAuth, no email is read or sent, no backend AI, no Fyxer data or metrics.</span></p>
+    </div>
+  </div>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="#overview" aria-label="First Value Lab home">
+        <span class="logo" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M9 17.5l4.5 4.5L23 11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="brand-text"><b>First Value Lab</b><small>Growth concept · synthetic</small></span>
+      </a>
+      <nav class="tabs" aria-label="Sections">
+        <a href="#overview" data-tab="overview">Overview</a>
+        <a href="#simulator" data-tab="simulator">Trial simulator</a>
+        <a href="#events" data-tab="events">Event taxonomy</a>
+        <a href="#experiment" data-tab="experiment">Experiment</a>
+        <a href="#validate" data-tab="validate">48–72h plan</a>
+        <a href="#docs" data-tab="docs">Docs</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- OVERVIEW -->
+    <section id="tab-overview" class="tab" hidden>
+      <div class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <p class="eyebrow">A growth question, not a product claim</p>
+            <h1>After someone connects their inbox, do they <em>recognise</em> a first draft they can trust?</h1>
+            <p class="lede">Fyxer's public docs describe what happens at connection: the 300 most recent emails are categorised, and drafts are written for emails in To do / To respond. This lab asks a narrower growth question: in the first session, does the user see that value, understand it, and act on it? It prototypes one testable answer: a transparent first-value preview with setup-readiness feedback.</p>
+            <div class="cta-row">
+              <a class="btn primary" href="#simulator">Open the trial simulator</a>
+              <a class="btn" href="#experiment">See the experiment design</a>
+            </div>
+            <p class="fine">Built by Devin (an AI agent) at Ayo's direction, for Ayo's review. Every name, thread and draft is invented.</p>
+          </div>
+          <div class="hero-card" aria-label="The bet in one card">
+            <p class="card-kicker">The bet</p>
+            <ol class="bet">
+              <li><span>Documented</span>Connection triggers categorisation of the last 300 emails, and drafts are written for To do / To respond emails.</li>
+              <li><span class="amber">Assumed</span>Some users don't notice, understand or trust that first draft in session one.</li>
+              <li><span class="teal">Tested</span>Showing what was sorted, the first draft and why it was written, plus what setup is holding drafts back, raises first drafts sent within 24h, without hurting trust guardrails.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="wrap section">
+        <h2>What changes, and what doesn't</h2>
+        <div class="grid3">
+          <article class="panel"><h3>System behaviour</h3><p><b>Unchanged in both arms.</b> Same categorisation and the same drafts. The treatment doesn't make drafting faster or better, and it doesn't fix a behaviour the product already has.</p></article>
+          <article class="panel"><h3>What the user sees</h3><p><b>Control:</b> the public checklist's next steps, which are to check your inbox and review drafts in Gmail or Outlook. <b>Treatment:</b> an in-product preview of what was sorted, the first draft with 'why this draft', where it lives, and a readiness list.</p></article>
+          <article class="panel"><h3>What we measure</h3><p><b>Primary:</b> share of exposed trial users who send a first Fyxer draft within 24h of connecting email. <b>Guardrails:</b> heavy-edit share, first-draft discards, disconnects, support contacts and trial cancellations.</p></article>
+        </div>
+      </div>
+      <div class="wrap section">
+        <div class="split-head">
+          <h2>Evidence versus assumptions</h2>
+          <p class="muted">Every claim in the lab is tagged. <span class="chip doc">E#</span> means documented publicly, with a link. <span class="chip amb">A#</span> means assumed and not yet verified.</p>
+        </div>
+        <div class="grid2">
+          <div class="panel"><h3>Documented (public sources)</h3><ul class="evidence" id="evidence-list"></ul></div>
+          <div class="panel"><h3>Assumptions to test</h3><ul class="evidence" id="assumption-list"></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIMULATOR -->
+    <section id="tab-simulator" class="tab" hidden>
+      <div class="wrap section">
+        <div class="page-head">
+          <p class="eyebrow">Trial simulator · scripted, deterministic</p>
+          <h1>Walk one synthetic trial user through either arm</h1>
+          <p class="lede sm">Pick a persona and an arm, then step through. Each step emits the analytics events defined in the taxonomy, and each event is checked against it. The paths are scripted to show where recognition can break (A7). They are not predictions, and they carry no conversion rates.</p>
+        </div>
+        <div class="sim-controls">
+          <div class="field">
+            <span class="label" id="persona-label">Persona</span>
+            <div class="persona-row" role="radiogroup" aria-labelledby="persona-label" id="persona-row"></div>
+          </div>
+          <div class="field">
+            <span class="label" id="arm-label">Arm</span>
+            <div class="seg" role="radiogroup" aria-labelledby="arm-label" id="arm-seg">
+              <button type="button" role="radio" data-arm="control">Control</button>
+              <button type="button" role="radio" data-arm="treatment">Treatment</button>
+            </div>
+          </div>
+        </div>
+        <p class="persona-summary" id="persona-summary"></p>
+        <div class="sim-grid">
+          <aside class="panel steps-panel" aria-label="Journey steps">
+            <h3>Journey</h3>
+            <ol class="steps" id="step-list"></ol>
+            <div class="step-nav">
+              <button class="btn sm" type="button" id="prev-step">Back</button>
+              <button class="btn sm primary" type="button" id="next-step">Next step</button>
+              <button class="btn sm ghost" type="button" id="play-all">Show all</button>
+            </div>
+          </aside>
+          <div class="screen-col">
+            <div class="device" id="device" aria-live="polite"></div>
+            <p class="screen-caption" id="screen-caption"></p>
+          </div>
+          <aside class="panel stream-panel" aria-label="Event stream">
+            <div class="stream-head"><h3>Event stream</h3><span class="chip ok" id="stream-valid"></span></div>
+            <ol class="stream" id="event-stream"></ol>
+          </aside>
+        </div>
+        <div class="panel outcome">
+          <div class="split-head"><h3>Both arms for this persona</h3><p class="muted">Structural properties of each scripted path, not outcomes.</p></div>
+          <div class="table-wrap"><table class="tbl" id="outcome-table"></table></div>
+          <p class="lesson" id="persona-lesson"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="tab-events" class="tab" hidden>
+      <div class="wrap section">
+        <div class="page-head">
+          <p class="eyebrow">Event taxonomy</p>
+          <h1>Events for the first-value experiment</h1>
+          <p class="lede sm">Names are object_action, snake_case, past tense. Events carry ids, enums, counts and buckets only, never email content, subjects, addresses or names. The simulator's events are checked against this schema in the browser and in the test suite.</p>
+        </div>
+        <div class="filter-row" id="group-filter" role="group" aria-label="Filter by group"></div>
+        <div class="table-wrap panel flush"><table class="tbl tax" id="taxonomy-table"></table></div>
+        <div class="grid2 section-tight">
+          <div class="panel">
+            <h3>Common properties (on every event)</h3>
+            <div class="table-wrap"><table class="tbl" id="common-table"></table></div>
+          </div>
+          <div class="panel">
+            <h3>Validate an event</h3>
+            <p class="muted">Paste an event as JSON. The same validator runs in the tests.</p>
+            <label class="sr-only" for="validate-input">Event JSON</label>
+            <textarea id="validate-input" rows="12" spellcheck="false"></textarea>
+            <div class="cta-row"><button class="btn sm primary" type="button" id="validate-btn">Validate</button><button class="btn sm" type="button" id="validate-bad">Try an invalid one</button><a class="btn sm ghost" id="taxonomy-download" download="first-value-lab-taxonomy.json">Download taxonomy JSON</a></div>
+            <div id="validate-out" class="validate-out" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIMENT -->
+    <section id="tab-experiment" class="tab" hidden>
+      <div class="wrap section">
+        <div class="page-head">
+          <p class="eyebrow">Experiment design · <span id="exp-id"></span></p>
+          <h1>Transparent first-value preview vs the documented flow</h1>
+          <p class="lede sm">An A/B test, randomised by user at trial start and analysed from the exposure event. The lab ships no baseline rates or results. The calculators below only use numbers you enter.</p>
+        </div>
+        <div class="grid2">
+          <article class="panel design">
+            <h3>Hypothesis</h3>
+            <p>If newly connected trial users see what was sorted, their first draft with the context behind it, and what setup is holding drafts back, more of them will send a first draft within 24h, because they can find and judge it in the moment (A1, A2). Trust guardrails will not worsen.</p>
+            <h3>Primary metric</h3>
+            <p><b>First draft sent within 24h.</b> Numerator: exposed users with <code>draft_sent</code> where <code>is_first=true</code> within 24h of <code>integration_connected(email)</code>. Denominator: users with <code>experiment_exposed</code>.</p>
+            <h3>Secondary</h3>
+            <ul><li>Time from email connection to first <code>draft_viewed</code> (median, p75)</li><li>Share with ≥1 <code>draft_sent</code> on 2 or more of trial days 1–3</li><li>Trial-to-paid (<code>trial_converted</code>). Long-horizon: read, but not a decision metric at this sample size (A4)</li></ul>
+          </article>
+          <article class="panel design">
+            <h3>Guardrails (one-sided, pre-registered limits)</h3>
+            <ul id="guardrail-list"></ul>
+            <h3>Segmentation (pre-registered)</h3>
+            <ul id="segment-list"></ul>
+            <p class="muted">Post-hoc segments are exploratory only. A ship call never rests on one.</p>
+          </article>
+        </div>
+        <div class="panel design">
+          <h3>Decision criteria</h3>
+          <ol class="decision-rules">
+            <li><b>Invalid</b> if the sample ratio mismatch check gives p &lt; 0.001. Fix assignment or logging first.</li>
+            <li><b>Keep running</b> until the planned users per arm and at least one full week. Early stop only for a significant guardrail breach.</li>
+            <li><b>Stop</b> if any guardrail is significantly worse and above its limit, if the primary is significantly negative, or if the CI's upper bound rules out the MDE.</li>
+            <li><b>Ship</b> if the primary CI's lower bound is above 0 and no guardrail is breached. Size the claim to the lower bound.</li>
+            <li><b>Iterate</b> otherwise: the CI still spans both 0 and the MDE.</li>
+          </ol>
+        </div>
+        <div class="grid2">
+          <form class="panel calc" id="power-form" novalidate>
+            <h3>Sample size and runtime</h3>
+            <p class="muted">Enter your own baseline. The lab doesn't know Fyxer's.</p>
+            <div class="inputs">
+              <label>Baseline rate (%)<input name="baseline" type="number" step="0.1" min="0.1" max="99" placeholder="e.g. your measured rate" required /></label>
+              <label>MDE (absolute pp)<input name="mde" type="number" step="0.1" min="0.1" max="50" value="3" required /></label>
+              <label>Alpha (two-sided)<input name="alpha" type="number" step="0.01" min="0.01" max="0.2" value="0.05" required /></label>
+              <label>Power<input name="power" type="number" step="0.05" min="0.5" max="0.99" value="0.8" required /></label>
+              <label>Eligible new trials per day<input name="daily" type="number" step="1" min="1" placeholder="your volume" required /></label>
+            </div>
+            <button class="btn primary sm" type="submit">Calculate</button>
+            <div class="calc-out" id="power-out" aria-live="polite"></div>
+          </form>
+          <form class="panel calc" id="decide-form" novalidate>
+            <h3>Decision sandbox</h3>
+            <p class="muted">Enter observed counts to see which pre-registered rule fires. The rule checks below fill in <b>made-up</b> inputs, one per branch. They are not results.</p>
+            <div class="rule-buttons" id="rule-buttons"></div>
+            <div class="inputs two">
+              <label>Control exposed<input name="cn" type="number" min="1" step="1" required /></label>
+              <label>Control first-draft-sent<input name="cx" type="number" min="0" step="1" required /></label>
+              <label>Treatment exposed<input name="tn" type="number" min="1" step="1" required /></label>
+              <label>Treatment first-draft-sent<input name="tx" type="number" min="0" step="1" required /></label>
+              <label>Heavy-edit sends, control<input name="gcx" type="number" min="0" step="1" required /></label>
+              <label>Heavy-edit sends, treatment<input name="gtx" type="number" min="0" step="1" required /></label>
+              <label>Days run<input name="days" type="number" min="1" step="1" required /></label>
+              <label>Planned per arm<input name="per" type="number" min="1" step="1" required /></label>
+            </div>
+            <p class="muted small">MDE and alpha come from the sample size form (defaults 3pp, 0.05). The heavy-edit guardrail is a share of draft senders, with a +10% relative limit.</p>
+            <button class="btn primary sm" type="submit">Apply decision rule</button>
+            <div class="calc-out" id="decide-out" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALIDATE -->
+    <section id="tab-validate" class="tab" hidden>
+      <div class="wrap section">
+        <div class="page-head">
+          <p class="eyebrow">Before building the A/B</p>
+          <h1>48–72 hours to decide whether this is worth an experiment</h1>
+          <p class="lede sm">The cheapest checks come first. Each has a pre-set threshold, so the go/no-go call can't drift once the data arrives.</p>
+        </div>
+        <article class="doc-body panel" id="validate-doc"><p class="muted">Loading…</p></article>
+      </div>
+    </section>
+
+    <!-- DOCS -->
+    <section id="tab-docs" class="tab" hidden>
+      <div class="wrap section docs-grid">
+        <nav class="panel doc-nav" aria-label="Documents"><h3>Documents</h3><ul id="doc-list"></ul></nav>
+        <article class="doc-body panel" id="doc-body"><p class="muted">Loading…</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <p><strong>Independent concept by Ayo Ahmed; not affiliated with Fyxer.</strong> Speculative prototype for a conversation about the Principal Growth Product Manager role. Not Fyxer's product, UI or data, and no claim of internal access or measured lift. Public sources are linked where cited.</p>
+      <p class="muted">Synthetic data · no real OAuth · nothing is sent · no backend AI · MIT licensed</p>
+    </div>
+  </footer>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
