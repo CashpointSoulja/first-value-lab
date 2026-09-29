@@ -99,4 +99,4 @@ npm run deploy         # → https://first-value-lab.<your-subdomain>.workers.de
 - Pricing (7-day trial): https://www.fyxer.com/pricing
 - Role description: https://jobs.ashbyhq.com/fyxer/e957fec9-e327-44c9-b12d-268fbc762c4e
 
-Built by Devin (an AI agent) at Ayo Ahmed's direction. MIT licence. Fyxer is a trademark of its owner, used here only to identify the product being discussed.
+Independent concept by Ayo Ahmed. MIT licence. Fyxer is a trademark of its owner, used here only to identify the product being discussed.
